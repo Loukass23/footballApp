@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+ 
+ <div v-if="isAuthenticated">   
+         <H1>logged  {{this.getUser}}</H1>
+ user 
+        
+      </div>
+<!-- <odd-cards></odd-cards> -->
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import OddCards from '@/components/OddCards.vue';
+
 
 export default {
-  name: "home",
-  components: {
-    HelloWorld
-  }
+    name: 'Home',
+    components: {OddCards
+    },
+    data() {
+        return {
+            
+        };
+    },
+    computed: {
+        isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        },
+        getUser() {
+            return this.$store.getters.getUser;
+        }
+    }
+    
 };
 </script>
