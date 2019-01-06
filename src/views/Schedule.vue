@@ -14,8 +14,7 @@
       <v-card class="elevation-2" color="primary lighten-1">
           <v-flex>
         <v-card-title class="headline">{{event.strHomeTeam}} - {{event.strAwayTeam}}</v-card-title>
-        <h1>test</h1>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4856.819352453805!2d13.32876897078897!3d52.50792467230733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fbd52021f6b%3A0x99e9b329f2a01778!2sUbiqum+Code+Academy+Berlin!5e0!3m2!1sfr!2sde!4v1546606531045" width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4856.819352453805!2d13.32876897078897!3d52.50792467230733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fbd52021f6b%3A0x99e9b329f2a01778!2sUbiqum+Code+Academy+Berlin!5e0!3m2!1sfr!2sde!4v1546606531045" width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe> -->
           </v-flex>
       </v-card>
     </v-timeline-item>

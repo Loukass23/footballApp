@@ -24,6 +24,11 @@ export default new Router({
       component: () => import("./views/Join.vue")
     },
     {
+      path: "/sign-in",
+      name: "SignIn",
+      component: () => import("./views/SignIn.vue")
+    },
+    {
       path: "/schedule",
       name: "Schedule",
       component: () => import("./views/Schedule.vue")

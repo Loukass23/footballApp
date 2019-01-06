@@ -20,7 +20,7 @@
               <v-btn icon>
                     <v-icon>map</v-icon>
                   </v-btn>
-          <v-btn icon>
+          <v-btn @click="addTeam(team.strTeam)" icon>
                     <v-icon>favorite</v-icon>
                   </v-btn>
            <v-btn icon>
@@ -68,8 +68,24 @@ export default {
         .catch(() => {
           this.teams = [];
         });
+    },
+    addTeam(item) {
+        if (this.isAuthenticated) {
+            this.$store.dispatch('addFavTeam', item);
+        } else {
+            this.$router.push('/sign-in');
+        }
     }
+
   },
+   computed: {
+        favTeam() {
+            return this.$store.state.favTeam;
+        },
+        isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        }
+   },
   created() {
     this.getTeams();
   }

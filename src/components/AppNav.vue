@@ -23,9 +23,14 @@
       <span class="title ml-3 mr-5">Football&nbsp;<span class="text">Odds</span></span>
       <v-text-field solo-inverted flat label="Search" prepend-icon="search"></v-text-field>
       <v-spacer></v-spacer>
-      <v-icon>account_circle</v-icon>
-      <div v-if="isAuthenticated">   
+      
+      <div v-if="isAuthenticated"> 
+       <v-icon>account_circle</v-icon>   
         {{this.getUser}}
+          <v-btn flat v-on:click="logout()">SIGN OUT</v-btn>
+      </div>
+      <div v-else>
+        <v-btn flat to="/sign-in">SIGN IN</v-btn>
       </div>
       
     </v-toolbar>
@@ -83,7 +88,13 @@ export default {
         getUser() {
             return this.$store.getters.getUser;
         }
-  }
+  },
+   methods: {
+        logout() {
+            this.$store.dispatch('userSignOut');
+        },
+        
+    }
 };
 </script>
 
