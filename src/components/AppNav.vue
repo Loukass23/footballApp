@@ -16,20 +16,22 @@
             </v-list-tile-content>
           </v-list-tile>
         </template>
+              <v-text-field solo-inverted flat label="Search" prepend-icon="search"></v-text-field>
+
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="primary lighten-1" app absolute clipped-left>
       <v-toolbar-side-icon @click.native="drawer = !drawer"></v-toolbar-side-icon>
       <span class="title ml-3 mr-5">Football&nbsp;<span class="text">Odds</span></span>
-      <v-text-field solo-inverted flat label="Search" prepend-icon="search"></v-text-field>
       <v-spacer></v-spacer>
       
       <div v-if="isAuthenticated"> 
        <v-icon>account_circle</v-icon>   
-        {{this.getUser}}
+        {{this.getUser.email}}
           <v-btn flat v-on:click="logout()">SIGN OUT</v-btn>
       </div>
       <div v-else>
+        <v-btn flat to="/join">JOIN</v-btn>
         <v-btn flat to="/sign-in">SIGN IN</v-btn>
       </div>
       
@@ -52,6 +54,11 @@ export default {
         icon: "group",
         text: "Teams",
         route: "/teams"
+      },
+      {
+        icon: "group",
+        text: "Favorite Teams",
+        route: "/favteams"
       },
       {
         icon: "date_range",

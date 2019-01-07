@@ -2,8 +2,9 @@
 <div>
  
  <div v-if="isAuthenticated">   
-         <H1>logged  {{this.getUser}}</H1>
- user 
+         <H1>logged </H1>
+<f-team></f-team>
+
         
       </div>
 <!-- <odd-cards></odd-cards> -->
@@ -12,25 +13,29 @@
 
 <script>
 import OddCards from '@/components/OddCards.vue';
-
+import FTeam from '@/components/FTeam.vue';
 
 export default {
     name: 'Home',
-    components: {OddCards
+    components: {OddCards,
+    FTeam
     },
     data() {
         return {
             
         };
     },
+    
     computed: {
+
         isAuthenticated() {
             return this.$store.getters.isAuthenticated;
         },
         getUser() {
             return this.$store.getters.getUser;
         }
-    }
+    },
+   
     
 };
 </script>

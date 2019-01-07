@@ -34,6 +34,11 @@ export default new Router({
       component: () => import("./views/Schedule.vue")
     },
     {
+      path: "/favteams",
+      name: "FavTeams",
+      component: () => import("./views/FavTeams.vue")
+    },
+    {
       path: "/about",
       name: "about"
     }

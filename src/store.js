@@ -9,21 +9,30 @@ export default new Vuex.Store({
   state: {
     user: null,
     isAuthenticated: false,
-    favTeam: []
+    favTeam: [],
+    errJoin: null
   },
   mutations: {
     setUser(state, payload) {
-      state.user = payload.user.email;
-      console.log(state.user);
+      state.user = payload.user;
       router.push("/");
+    },
+    setErrJoin(state, payload) {
+      console.log(payload);
+      state.errJoin = payload;
     },
     setIsAuthenticated(state, payload) {
       state.isAuthenticated = payload;
       router.push("/");
+       // this.actions.getFavTeam();
+    },
+    setUserFavTeams(state, payload) {
+      console.log(payload);
+      state.favTeam = payload;
     }
   },
   actions: {
-    userJoin({ commit }, { email, password }) {
+    userJoin({ commit }, { email, password, username }) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
@@ -31,10 +40,16 @@ export default new Vuex.Store({
           commit("setUser", user);
           commit("setIsAuthenticated", true);
         })
-        .catch(() => {
+        .catch(err => {
+          console.log(err.message);
+          commit("setErrJoin", err.message);
           commit("setUser", null);
           commit("setIsAuthenticated", false);
         });
+      // catch(() => {
+      //   commit("setUser", null);
+      //   commit("setIsAuthenticated", false);
+      // });
     },
     userLogin({ commit }, { email, password }) {
       firebase
@@ -43,6 +58,7 @@ export default new Vuex.Store({
         .then(user => {
           commit("setUser", user);
           commit("setIsAuthenticated", true);
+         
           router.push("/");
         })
         .catch(() => {
@@ -55,7 +71,6 @@ export default new Vuex.Store({
         .auth()
         .signOut()
         .then(() => {
-          //commit("setUser", null);
           commit("setIsAuthenticated", false);
           router.push("/");
         })
@@ -65,12 +80,21 @@ export default new Vuex.Store({
         });
     },
     addFavTeam({ state }, payload) {
+      console.log(payload);
       firebase
-          .database()
-          .ref('users')
-          .child(state.user.uid)
-          .push(payload);
-  }
+        .database()
+        .ref("users")
+        .child(state.user.uid)
+        .push(payload);
+    },
+    getFavTeam({ state, commit }) {
+      return firebase
+        .database()
+        .ref("users/" + state.user.uid)
+        .once("value", snapshot => {
+          commit("setUserFavTeams", snapshot.val());
+        });
+    }
   },
   getters: {
     isAuthenticated(state) {
@@ -78,6 +102,12 @@ export default new Vuex.Store({
     },
     getUser(state) {
       return state.user;
+    },
+    getErrJoin(state) {
+      return state.err;
+    },
+    getTeam(state) {
+      return state.favTeam;
     }
   }
 });
