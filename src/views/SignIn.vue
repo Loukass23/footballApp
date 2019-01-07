@@ -12,7 +12,7 @@
               </v-toolbar>
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-text-field prepend-icon="person" name="email" label="Login" type="email"  v-model="email" :rules="emailRules" required></v-text-field>
+                  <v-text-field prepend-icon="mail" name="email" label="email" type="email"  v-model="email" :rules="emailRules" required></v-text-field>
                   <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" required v-model="password" :rules="passwordRules"></v-text-field>
                  <input v-if="feedback" v-model="feedback" type="text" color="red" size="100">
                 </v-form>
@@ -21,6 +21,28 @@
                  
                 <v-spacer></v-spacer>
                 <v-btn color="primary" :disabled="!valid" @click="submit">Sign In</v-btn>
+                
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+        
+        <v-layout align-center justify-center>
+          <v-flex xs12 sm8 md6 >
+            <v-card >
+              <v-toolbar dark color="primary">
+                  <v-icon>account_circle</v-icon>
+                <v-toolbar-title>Connect with Google account</v-toolbar-title>
+              
+              </v-toolbar>
+              <v-card-text>
+                <v-btn color="primary" @click="signInWithGoogle">Sign in with Google</v-btn>
+              </v-card-text>
+              <v-card-actions>
+                 
+                <v-spacer></v-spacer>
+               
+               
                 
               </v-card-actions>
             </v-card>
@@ -60,7 +82,10 @@ export default {
                 });
             }
 
-  }
+  },
+  signInWithGoogle(){
+this.$store.dispatch('signInWithGoogle')
+}
 }
 };
 

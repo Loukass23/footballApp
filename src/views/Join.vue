@@ -23,6 +23,7 @@
                 <v-spacer></v-spacer>
                 <v-btn color="primary" :disabled="!valid" @click="submit">Create</v-btn>
                 
+                
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -33,16 +34,17 @@
             <v-card >
               <v-toolbar dark color="primary">
                   <v-icon>account_circle</v-icon>
-                <v-toolbar-title>Create new account with Google</v-toolbar-title>
+                <v-toolbar-title>Connect with Google account</v-toolbar-title>
               
               </v-toolbar>
               <v-card-text>
-               
+                <v-btn color="primary" @click="signInWithGoogle">Sign in with Google</v-btn>
               </v-card-text>
               <v-card-actions>
                  
                 <v-spacer></v-spacer>
-                <v-btn color="primary" :disabled="!valid" @click="submit">Create</v-btn>
+               
+               
                 
               </v-card-actions>
             </v-card>
@@ -85,6 +87,9 @@ export default {
         }
     }
 ,
+signInWithGoogle(){
+this.$store.dispatch('signInWithGoogle')
+},
     submitOld() {
       if (this.$refs.form.validate()) {
         firebase

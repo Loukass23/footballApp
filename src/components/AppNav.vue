@@ -27,7 +27,7 @@
       
       <div v-if="isAuthenticated"> 
        <v-icon>account_circle</v-icon>   
-        {{this.getUser.email}}
+        {{this.getUser.displayName}}
           <v-btn flat v-on:click="logout()">SIGN OUT</v-btn>
       </div>
       <div v-else>

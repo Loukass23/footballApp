@@ -14,11 +14,12 @@
 <script>
 import OddCards from '@/components/OddCards.vue';
 import FTeam from '@/components/FTeam.vue';
+import TeamCard from '@/components/TeamCard.vue';
 
 export default {
     name: 'Home',
     components: {OddCards,
-    FTeam
+    FTeam, TeamCard
     },
     data() {
         return {
