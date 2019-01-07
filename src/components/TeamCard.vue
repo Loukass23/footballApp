@@ -11,54 +11,30 @@
 
             <v-card-actions>
                  <div v-if="isAuthenticated">
-                    <div v-for="(item, idx) in userTeams" class="subheading mb-2" :key="idx">
-                        <div v-if="item == team.strTeam">
+                  <div v-for="(item, idx) in userTeams"  :key="idx">
+                        <div v-if="team.strTeam == item">
                             <v-btn icon>
-                                <v-icon color="red">favorite</v-icon>
+                                <v-icon @click="removeTeam(idx)" color="red">favorite</v-icon>
                             </v-btn>
                         </div>
-                     
-                </div>
-
-                </div> 
-                 <v-btn @click="addTeam(team.strTeam)" icon>
+                     </div> 
+                      <div v-if="!isFavorite2(team.strTeam , this.userTeams )">
+                <v-btn @click="addTeam(team.strTeam)" icon>
                         <v-icon>add</v-icon>
                     </v-btn>
+                 </div>
+                     
                 
- 
-<!-- <div v-if="isAuthenticated">
-                <div v-if="isFavorite(team.strTeam)">
-                    <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon color="red">favorite</v-icon>
+                </div>  
+                 
+                 <div v-else>
+                <v-btn @click="addTeam(team.strTeam)" icon>
+                        <v-icon>add</v-icon>
                     </v-btn>
-                </div>
-                <div v-else>
-                    <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon>favorite</v-icon>
-                    </v-btn>
-                </div>
+                 </div>
+    
 
-
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                    <v-icon>map</v-icon>
-                </v-btn> 
- </div>
-                        <div v-else>
-                    <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon>favorite</v-icon>
-                    </v-btn>
-                </div>
- -->
-
-
-                <!-- <div v-else> 
-                     <v-btn @click="addTeam(team.strTeam)" icon>
-                    <v-icon>map</v-icon>
-                    </v-btn>
-                </div>     -->
-
-                <v-btn icon>
+                <v-btn icon  >
                     <v-icon>share</v-icon>
                 </v-btn>
             </v-card-actions>
@@ -70,14 +46,21 @@
     export default {
         name: "TeamCards",
         props: {
-            team: null,
-            favTeam: null
+            team: null
         },
         methods: {
             addTeam(teamName) {
                 if (this.isAuthenticated) {
-                    // console.log(item);
                     this.$store.dispatch('addFavTeam', teamName);
+                    this.getTeams();
+                } else {
+                    this.$router.push('/sign-in');
+                }
+            },
+            removeTeam(teamName) {
+                console.log(teamName)
+                if (this.isAuthenticated) {
+                    this.$store.dispatch('removeFavTeam', teamName);
                     this.getTeams();
                 } else {
                     this.$router.push('/sign-in');
@@ -87,20 +70,27 @@
                 this.$store.dispatch('getFavTeam');
                 
             },
-            isFavorite(teamCards){
-                this.userTeams.array.forEach(element => { if(element == teamCards){
-                      console.log(element)
-                      console.log(teamCards)
-                    return true
-                }
-                else{
-                    return false
-                }
-                    
-                });
-              
+            isFavorite(teamCards, fav){
                 
-                
+              var heart = false
+                  if(teamCards == fav){
+                      heart = true
+                  }
+                return heart   
+              }
+               
+            ,
+            isFavorite2(teamCards, fav){
+              var heart = false
+              for (var i in fav){
+                 
+                  if(teamCards == fav[i]){
+                      
+                      heart = true
+                  }
+                  
+              }
+               return heart 
             }
         },
         computed: {

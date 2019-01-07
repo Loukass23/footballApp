@@ -22,17 +22,23 @@
     </v-navigation-drawer>
     <v-toolbar color="primary lighten-1" app absolute clipped-left>
       <v-toolbar-side-icon @click.native="drawer = !drawer"></v-toolbar-side-icon>
-      <span class="title ml-3 mr-5">Football&nbsp;<span class="text">Odds</span></span>
-      <v-spacer></v-spacer>
+      <span class="title ml-3 mr-5">Football&nbsp;<span class="text">App</span></span>
       
+      <v-spacer></v-spacer>
       <div v-if="isAuthenticated"> 
        <v-icon>account_circle</v-icon>   
         {{this.getUser.displayName}}
-          <v-btn flat v-on:click="logout()">SIGN OUT</v-btn>
+          <v-btn icon flat v-on:click="logout()" >
+            <v-icon>exit_to_app</v-icon>
+          </v-btn>
       </div>
       <div v-else>
-        <v-btn flat to="/join">JOIN</v-btn>
-        <v-btn flat to="/sign-in">SIGN IN</v-btn>
+        <v-btn icon  flat to="/join" >
+        <v-icon>add_circle</v-icon>
+        </v-btn>
+        <v-btn icon  flat to="/sign-in">
+        <v-icon>account_circle</v-icon>
+        </v-btn>
       </div>
       
     </v-toolbar>
