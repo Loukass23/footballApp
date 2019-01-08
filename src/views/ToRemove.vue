@@ -146,6 +146,7 @@ import axios from "axios";
            console.log(player)   
         
               item.children.push(...player)
+              this.users = players
               })
           .catch(err => console.warn(err))
       },
@@ -164,6 +165,7 @@ import axios from "axios";
     };
   });
 }
+
 
 this.items.push(...generateOptions(teams))
 
