@@ -80,7 +80,12 @@ export default {
         divider: true
       },
       {
-        icon: "account_box",
+        icon: "account_circle",
+        text: "Log In",
+        route: "/sign-in"
+      },
+      {
+        icon: "add_circle",
         text: "Join",
         route: "/join"
       },

@@ -1,5 +1,6 @@
 <template>
-    <v-app>
+    <v-app >
+      
         <app-nav></app-nav>
 
         <v-content transition="slide-x-transition">
@@ -20,4 +21,5 @@ export default {
 </script>
 
 <style>
+
 </style>

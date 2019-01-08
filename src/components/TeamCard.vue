@@ -1,5 +1,6 @@
 <template>
     <div>
+        
         <v-card color="grey lighten-3" width="150">
             <v-img v-bind:src=team.strTeamBadge height="150" contains></v-img>
 
@@ -35,7 +36,7 @@
     
 
                 <v-btn icon  >
-                    <v-icon>share</v-icon>
+                    <v-icon>group</v-icon>
                 </v-btn>
             </v-card-actions>
         </v-card>
@@ -46,7 +47,8 @@
     export default {
         name: "TeamCards",
         props: {
-            team: null
+            team: null,
+            league: null
         },
         methods: {
             addTeam(teamName) {
