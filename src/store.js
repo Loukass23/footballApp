@@ -10,7 +10,7 @@ export default new Vuex.Store({
     user: null,
     isAuthenticated: false,
     favTeam: [],
-    errJoin: null
+    leagueSelected: null
   },
   mutations: {
     setUser(state, payload) {
@@ -23,6 +23,9 @@ export default new Vuex.Store({
     },
     setUserFavTeams(state, payload) {
       state.favTeam = payload;
+    },
+    setLeague(state, payload) {
+      state.leagueSelected = payload;
     }
   },
   actions: {
@@ -101,6 +104,9 @@ export default new Vuex.Store({
         .child(state.user.uid + "/teams")
         .push(payload);
     },
+    addLeague({ commit }, payload) {
+      commit("setLeague", payload);
+    },
     getFavTeam({ state, commit }) {
       return firebase
         .database()
@@ -128,6 +134,9 @@ export default new Vuex.Store({
     },
     getTeam(state) {
       return state.favTeam;
+    },
+    getLeague(state) {
+      return state.leagueSelected;
     }
   }
 });

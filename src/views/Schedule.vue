@@ -1,6 +1,9 @@
 <template>
-<div v-if="!chosenLeague">
-  <h4>Select League</h4>
+<div v-if="!selectedLeague">
+  <v-toolbar>
+  <v-icon large color="grey darken-2">date_range</v-icon>
+  <v-toolbar-title>Select League</v-toolbar-title>
+  </v-toolbar>
 <v-container grid-list-md text-xs-center >
 <v-layout row wrap  align-center justify-center fill-height>
   <v-flex v-for="ligue  in ligues.ligues" :key="ligue.id" >
@@ -16,8 +19,8 @@
         <v-card-actions>
             
               <v-spacer></v-spacer>
-            <v-btn @click="getEvents(ligue.id, ligue.name)" large icon>
-                        <v-icon>add</v-icon>
+            <v-btn @click="getEvents(ligue.id, ligue.name, ligue.img)" large icon>
+                        <v-icon>done</v-icon>
                     </v-btn>
           
         </v-card-actions>
@@ -28,14 +31,21 @@
   </div>
  <div v-else>
    <v-responsive> 
-      <v-toolbar color="white" flat>
+      <v-toolbar>
           <v-btn icon light>
-            <v-icon @click="clearLeague()" color="grey darken-2">arrow_back</v-icon>
+            <v-icon large @click="clearLeague()" color="grey darken-2">arrow_back</v-icon>
           </v-btn>
 
-          <v-toolbar-title class="grey--text text--darken-4">Back to leagues</v-toolbar-title>
+          <v-toolbar-title>Back to leagues</v-toolbar-title>
           <v-spacer></v-spacer>
-<h1>{{this.chosenLeague}} Events</h1>
+<h1> Events</h1>
+ <v-avatar
+          :tile="tile"
+          :size="avatarSize"
+          color="grey lighten-4"
+        >
+          <img :src= selectedLeague alt="avatar">
+        </v-avatar>
           <v-spacer></v-spacer>
 
         
@@ -87,7 +97,7 @@ export default {
     return {
       events: [],
       dialog: false,
-      chosenLeague: null,
+      selectedLeague: null,
        ligues: {
          "ligues": [
     { "name":"English Premier League", "id":"4328", "img":"https://www.thesportsdb.com/images/media/league/badge/xyrpuy1467456595.png" },
@@ -99,7 +109,7 @@ export default {
     };
   },
   methods: {
-    getEvents(leagueid, leagueName) {
+    getEvents(leagueid, leagueName, leagueImg) {
       axios
         .get(
           "https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id="+leagueid,
@@ -110,20 +120,29 @@ export default {
         .then(response => {
           response = response.data;
           this.events = response.events;
-          this.chosenLeague = leagueName;
+          this.selectedLeague = leagueImg;
+           this.$store.dispatch('addLeague', leagueName)
         })
         .catch(() => {
           this.events = [];
         });
     },
     clearLeague() {
-      this.chosenLeague = null;
+      this.selectedLeague = null;
+      this.$store.dispatch('addLeague', null)
     }
   },
   
-  created() { 
-    
-  }
+ computed: {
+         getLeague() {
+            return this.$store.getters.getLeague;
+        }
+ },
+ created() {
+   if(getLeague){
+     getTeams
+   }
+ }
 };
 </script>
 

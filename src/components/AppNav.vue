@@ -62,8 +62,8 @@ export default {
         route: "/teams"
       },
       {
-        icon: "group",
-        text: "Favorite Teams",
+        icon: "favorite",
+        text: "My Favorites",
         route: "/favteams"
       },
       {

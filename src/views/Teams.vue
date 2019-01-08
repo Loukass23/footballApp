@@ -1,15 +1,21 @@
 <template>
   
-    <div v-if="chosenLeague">
+    <div v-if="selectedLeague">
      <v-responsive> 
       <v-toolbar color="white" flat>
           <v-btn icon light>
-            <v-icon @click="clearLeague()" color="grey darken-2">arrow_back</v-icon>
+            <v-icon large @click="clearLeague()" color="grey darken-2">arrow_back</v-icon>
           </v-btn>
 
-          <v-toolbar-title class="grey--text text--darken-4">Back to leagues</v-toolbar-title>
+          <v-toolbar-title ></v-toolbar-title>
           <v-spacer></v-spacer>
-<h1>{{this.chosenLeague}} Teams</h1>
+<h1> Teams</h1>
+<v-avatar
+          
+          color="grey lighten-4"
+        >
+          <img v-bind:src= this.selectedLeague alt="avatar">
+        </v-avatar>
           <v-spacer></v-spacer>
 
         
@@ -19,14 +25,18 @@
          
     <v-layout row wrap  align-center justify-center fill-height>
     <v-flex v-for="team  in teams" :key="team.id" >
-      <team-card v-bind:team= team v-bind:league= chosenLeague></team-card>
+      <team-card v-bind:team= team v-bind:league= getLeague></team-card>
     </v-flex>
 </v-layout>
      </v-container>
   </div> 
    
     <div v-else>
-  <h1>Leagues</h1>
+        <v-toolbar>
+  <v-icon large color="grey darken-2">group</v-icon>
+  <v-toolbar-title>Select League</v-toolbar-title>
+  </v-toolbar>
+  
 <v-container grid-list-md text-xs-center >
 <v-layout row wrap  align-center justify-center fill-height>
   <v-flex v-for="ligue  in ligues.ligues" :key="ligue.id" >
@@ -42,8 +52,8 @@
         <v-card-actions>
             
               <v-spacer></v-spacer>
-            <v-btn @click="getTeams(ligue.nameStr , ligue.name)" large icon>
-                        <v-icon>add</v-icon>
+            <v-btn @click="getTeams(ligue.nameStr , ligue.name, ligue.img)" large icon>
+                        <v-icon>done</v-icon>
                     </v-btn>
           
         </v-card-actions>
@@ -66,7 +76,7 @@ export default {
   data() {
     return {
       teams: [],
-      chosenLeague: null,
+      selectedLeague: null,
       ligues: {
          "ligues": [
     { "name":"English Premier League", "nameStr":"English%20Premier%20League", "img":"https://www.thesportsdb.com/images/media/league/badge/xyrpuy1467456595.png" },
@@ -78,7 +88,7 @@ export default {
     };
   },
   methods: {
-    getTeams(league, leagueName) {
+    getTeams(league, leagueName, leagueImg) {
       axios
         .get(
           "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=" +
@@ -87,8 +97,8 @@ export default {
         .then(response => {
           response = response.data;
           this.teams = response.teams;
-          this.chosenLeague = leagueName;
-          
+          this.$store.dispatch('addLeague', leagueName)
+          this.selectedLeague = leagueImg
         })
         .catch(() => {
           this.teams = [];
@@ -103,7 +113,8 @@ export default {
         }
     },
     clearLeague() {
-      this.chosenLeague = null;
+       this.$store.dispatch('addLeague', null)
+       this.selectedLeague = null
     }
 
   },
@@ -111,7 +122,11 @@ export default {
         
         isAuthenticated() {
             return this.$store.getters.isAuthenticated;
+        },
+         getLeague() {
+            return this.$store.getters.getLeague;
         }
+
    },
   created() {
    

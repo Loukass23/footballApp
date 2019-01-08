@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import store from "@/store.js";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -34,9 +35,17 @@ export default new Router({
       component: () => import("./views/Schedule.vue")
     },
     {
+      path: "/test",
+      name: "Test",
+      component: () => import("./views/ToRemove.vue")
+    },
+    {
       path: "/favteams",
       name: "FavTeams",
-      component: () => import("./views/FavTeams.vue")
+      component: () => import("./views/FavTeams.vue"),
+      meta: {
+        authRequired: true
+      }
     },
     {
       path: "/about",
@@ -44,3 +53,19 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authRequired)) {
+    if (!store.state.user) {
+      next({
+        path: "/sign-in"
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
