@@ -1,17 +1,18 @@
 <template>
   <v-card>
-    <v-card-title class="indigo white--text headline">
-      User Directory
-    </v-card-title>
+   <v-toolbar>
+  <v-icon large color="grey darken-2">perm_identity</v-icon>
+  <v-toolbar-title>Players Directory</v-toolbar-title>
+  </v-toolbar>
     <v-layout
       justify-space-between
       pa-3
     >
       <v-flex xs5>
-        <v-treeview
-          :active.sync="active"
+        <v-treeview       
           :items="items"
           :load-children="fetchUsers"
+          :active.sync="active"
           :open.sync="open"
           activatable
           active-class="primary--text"
@@ -19,12 +20,13 @@
           open-on-click
           transition
         >
-          <v-icon
+         
+          <v-icon  @click="test(item)"
             v-if="!item.children"
             slot="prepend"
             slot-scope="{ item, active }"
             :color="active ? 'primary' : ''"
-          >mdi-account</v-icon>
+          >perm_identity</v-icon>
         </v-treeview>
       </v-flex>
       <v-flex
@@ -33,35 +35,38 @@
       >
         <v-scroll-y-transition mode="out-in">
           <div
-            v-if="!selected"
+            v-if="!selectPlayer"
             class="title grey--text text--lighten-1 font-weight-light"
             style="align-self: center;"
           >
             Select a player
           </div>
+          <div v-else>
           <v-card
-            v-else
-            :key="selected"
+            
+            :key="selectPlayer"
             class="pt-4 mx-auto"
             flat
             max-width="400"
           >
-          
+
             <v-card-text>
               <v-avatar
-                v-if="avatar"
-                size="88"
+                 size="88"
               >
-                <v-img
+              <v-img v-if="selectPlayer.avatar" :src= selectPlayer.avatar
+                  class="mb-4"
+                ></v-img>
+                <v-img v-else
                   :src="`https://avataaars.io/${avatar}`"
                   class="mb-4"
                 ></v-img>
               </v-avatar>
               <h3 class="headline mb-2">
-                {{ selected.name }}
+                {{ selectPlayer.name }}
               </h3>
-              <!-- <div class="blue--text mb-2">{{ selected.email }}</div> -->
-              <!-- <div class="blue--text subheading font-weight-bold">{{ selected.strPlayer }}</div> -->
+              <div class="blue--text mb-2">{{ selectPlayer.position}}</div>
+              <div class="blue--text subheading font-weight-bold">{{ selectPlayer.name }}</div>
             </v-card-text>
             <v-divider></v-divider>
             <v-layout
@@ -69,8 +74,8 @@
               text-xs-left
               wrap
             >
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Company:</v-flex>
-              <!-- <v-flex>{{ selected.company.name }}</v-flex> -->
+              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Nationality:</v-flex>
+              <v-flex>{{ selectPlayer.nationality }}</v-flex>
               <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Website:</v-flex>
               <v-flex>
                 <!-- <a :href="`//${selected.website}`" target="_blank">{{ selected.website }}</a> -->
@@ -79,15 +84,16 @@
               <!-- <v-flex>{{ selected.phone }}</v-flex> -->
             </v-layout>
           </v-card>
+          </div>
         </v-scroll-y-transition>
       </v-flex>
     </v-layout>
-    
+
   </v-card>
 </template>
 
 <script>
-import axios from "axios";
+
   const avatars = [
     '?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
     '?accessoriesType=Sunglasses&avatarStyle=Circle&clotheColor=Gray02&clotheType=ShirtScoopNeck&eyeType=EyeRoll&eyebrowType=RaisedExcited&facialHairColor=Red&facialHairType=BeardMagestic&hairColor=Red&hatColor=White&mouthType=Twinkle&skinColor=DarkBrown&topType=LongHairBun',
@@ -102,72 +108,82 @@ import axios from "axios";
       avatar: null,
       open: [],
       users: [],
-      players: [],
-      team: []
+      selectPlayer: []
     }),
     computed: {
       items () {
         return [
-        
+
         ]
       },
       selected () {
+          console.log(this.active)
         if (!this.active.length) return undefined
         const id = this.active[0]
-        console.log(this.users.find(user => user.id === id))
+
         return this.users.find(user => user.id === id)
       },
-      
+
+
     },
     watch: {
-      selected: 'randomAvatar'
+      selectPlayer: 'randomAvatar'
     },
     methods: {
       async fetchUsers (item) {
-          
-           
+
+
         // Remove in 6 months and say
         // you've made optimizations! :)
-        await pause(1500)
+        //await pause(1500)
         return fetch('https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t='+ item.name)
           .then(res => res.json())
-          .then(json => { 
+          .then(json => {
 
  let player = [];
-  let response = json.player  
-    console.log(item)
+  let response = json.player
+    //console.log(item)
+var generateOptions = function ( object ) {
+  return Object.keys(object).map( function( key ) {
+    return {
+    	id: key,
+          name: object[key].strPlayer,
+          nationality: object[key].strNationality,
+          position: object[key].strPosition,
+          avatar: object[key].strCutout
+    };
+  });
+}
+    console.log(generateOptions(response))
 
-    
-    for (var i in response) 
-    {
-        player[i] = ({id: i , name: response[i].strPlayer})
-        
-    }
-           console.log(player)   
-        
-              item.children.push(...player)
-              this.users = players
+            this.users = generateOptions(response)
+             item.children.push(...generateOptions(response))
+              console.log(item)
+
               })
           .catch(err => console.warn(err))
       },
       randomAvatar () {
         this.avatar = avatars[Math.floor(Math.random() * avatars.length)]
       },
+      test(item){
+console.log(item)
+this.selectPlayer = item
+      },
     createItem(){
-        var teams = { "-LViw3BouosNO2WyGXjN": "Bordeaux", "-LViw3YSRtmCEBsjCKdO": "Caen" }
-        
+        var teams = { "kkkn": "Bordeaux", "zdezdzed": "Caen" , "zedzed": "Caen" }
+
         var generateOptions = function ( object ) {
   return Object.keys(object).map( function( key ) {
     return {
-    	id: key,
+    	key: key,
           name: object[key],
           children: []
     };
   });
 }
-
-
 this.items.push(...generateOptions(teams))
+
 
 
 
