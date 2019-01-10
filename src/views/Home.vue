@@ -1,15 +1,17 @@
 <template>
 <div>
+  
  <template>
   <v-parallax
     dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-  >
+   >
     <v-layout
       align-center
       column
-      justify-center
+      justify-start
+      
     >
+    <v-icon x-large>add</v-icon>
       <h1 class="display-2 font-weight-thin mb-3">Football App</h1>
       <h4 class="subheading">Log in...</h4>
     </v-layout>
@@ -17,10 +19,11 @@
 </template>
  <div v-if="isAuthenticated">   
          <H1>logged </H1>
-<f-team></f-team>
-
-        
+<f-team></f-team> 
       </div>
+      <div v-else>
+        Log in for exclusive content
+        </div>
 <!-- <odd-cards></odd-cards> -->
 </div>
 </template>

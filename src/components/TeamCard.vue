@@ -1,12 +1,13 @@
 <template>
     <div>    
-        <v-container fluid pa-1 ma-1>
-         <v-layout row justify-center>  
-        <v-card tile color="grey lighten-4" width="200" min-height="250">
+        <v-container fluid pa-1 my-1>
+         <v-layout row justify-center fill-height px-.5> 
+             <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="getTeams()" tile color="grey lighten-4" width="170" min-height="250">
             
             <v-img   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
             
-            <v-layout row align-center> 
+            <v-layout row align-center > 
             <v-flex xs6>
             <v-card-title pa-0 primary-title>
                 {{team.strTeam}}
@@ -14,7 +15,7 @@
             </v-card-title>
             </v-flex>
              <v-flex xs6>
-            <v-card-actions >
+            <v-card-actions  >
                  <div v-if="isAuthenticated">
                   <div v-for="(item, idx) in userTeams"  :key="idx">
                         <div v-if="team.strTeam == item">
@@ -34,13 +35,12 @@
                         <v-icon>favorite</v-icon>
                     </v-btn>
                  </div>
-                <v-btn icon  >
-                    <v-icon>group</v-icon>
-                </v-btn>
+               
             </v-card-actions>
             </v-flex>
             </v-layout>
         </v-card>
+             </v-hover>
          </v-layout>
         </v-container>
     </div>
