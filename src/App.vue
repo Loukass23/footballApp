@@ -1,5 +1,9 @@
 <template>
-    <v-app >
+    <v-app style="
+    background: #3A1C71;
+    background: -webkit-linear-gradient(to right, #E8EAF6,#C5CAE9, #E0E0E0);
+    background: linear-gradient(to right, #E8EAF6,#C5CAE9,#E0E0E0);
+  ">
       
         <app-nav></app-nav>
 

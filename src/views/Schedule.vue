@@ -1,13 +1,16 @@
 <template>
 <div v-if="!selectedLeague">
-  <v-toolbar>
-  <v-icon large color="grey darken-2">date_range</v-icon>
-  <v-toolbar-title>Select League</v-toolbar-title>
-  </v-toolbar>
+ <v-toolbar>
+      <v-icon large color="grey darken-2">date_range</v-icon>
+      <v-toolbar-title>Select League</v-toolbar-title>
+    </v-toolbar>
 <v-container grid-list-md text-xs-center >
 <v-layout row wrap  align-center justify-center fill-height>
   <v-flex v-for="ligue  in ligues.ligues" :key="ligue.id" >
-      <v-card color="grey lighten-3"  width="150">
+        <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto"  @click="getEvents(ligue.id, ligue.name, ligue.img)" 
+              color="grey lighten-3" width="200">
+      
         <v-img v-bind:src= ligue.img  height="150"  
             contains></v-img>
 
@@ -16,29 +19,24 @@
             <h4 >{{ligue.name}}</h4>
           </div>
         </v-card-title>
-        <v-card-actions>
-            
-              <v-spacer></v-spacer>
-            <v-btn @click="getEvents(ligue.id, ligue.name, ligue.img)" large icon>
-                        <v-icon>done</v-icon>
-                    </v-btn>
-          
-        </v-card-actions>
+       
       </v-card> 
+        </v-hover>
     </v-flex>
   </v-layout>
    </v-container>
   </div>
  <div v-else>
-   <v-responsive> 
+   
       <v-toolbar>
           <v-btn icon light>
             <v-icon large @click="clearLeague()" color="grey darken-2">arrow_back</v-icon>
           </v-btn>
 
-          <v-toolbar-title>Back to leagues</v-toolbar-title>
+         
           <v-spacer></v-spacer>
-<h1> Events</h1>
+
+<v-toolbar-title>Events</v-toolbar-title>
  <v-avatar
           :tile="tile"
           :size="avatarSize"
@@ -50,30 +48,36 @@
 
         
         </v-toolbar>
-     </v-responsive>
-   <v-container>
-   <v-timeline dense>
+
+   <v-container text-xs-center >
+   <v-timeline >
     <v-timeline-item
       v-for="event in events"
       :key="event.id" 
       color="primary darken-2"
-      large
-    >
-        <v-card-text >
-            <h2>{{event.dateEvent}}  </h2>  
+      
+    > 
+    
+        <v-card-text slot="opposite" >
+         
+          <v-icon>date_range</v-icon>
+           {{event.dateEvent}}   
         </v-card-text>
+   <v-flex>
+     
       <v-card class="elevation-2" color="primary lighten-1">
-          <v-flex>
-        <v-card-title class="headline">{{event.strHomeTeam}} - {{event.strAwayTeam}}</v-card-title>
-        <v-btn
+          
+        <v-card-title >{{event.strHomeTeam}} - {{event.strAwayTeam}}</v-card-title>
+        <v-btn 
       color="primary"
       dark
       @click="dialog = true"
     large icon>
-                        <v-icon>map</v-icon>
+                        <v-icon >map</v-icon>
                     </v-btn>
-          </v-flex>
+          
       </v-card>
+      </v-flex>
     </v-timeline-item>
   </v-timeline>
   </v-container>

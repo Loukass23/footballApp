@@ -1,16 +1,20 @@
 <template>
-    <div>
-        
-        <v-card color="grey lighten-3" width="150">
-            <v-img v-bind:src=team.strTeamBadge height="150" contains></v-img>
-
-            <v-card-title primary-title>
-                <div>
-                    <h4>{{team.strTeam}}</h4>
-                </div>
+    <div>    
+        <v-container fluid pa-1 ma-1>
+         <v-layout row justify-center>  
+        <v-card tile color="grey lighten-4" width="200" min-height="250">
+            
+            <v-img   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
+            
+            <v-layout row align-center> 
+            <v-flex xs6>
+            <v-card-title pa-0 primary-title>
+                {{team.strTeam}}
+                
             </v-card-title>
-
-            <v-card-actions>
+            </v-flex>
+             <v-flex xs6>
+            <v-card-actions >
                  <div v-if="isAuthenticated">
                   <div v-for="(item, idx) in userTeams"  :key="idx">
                         <div v-if="team.strTeam == item">
@@ -21,28 +25,26 @@
                      </div> 
                       <div v-if="!isFavorite2(team.strTeam , this.userTeams )">
                 <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon>add</v-icon>
+                        <v-icon>favorite</v-icon>
                     </v-btn>
                  </div>
-                     
-                
-                </div>  
-                 
+                </div>                  
                  <div v-else>
                 <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon>add</v-icon>
+                        <v-icon>favorite</v-icon>
                     </v-btn>
                  </div>
-    
-
                 <v-btn icon  >
                     <v-icon>group</v-icon>
                 </v-btn>
             </v-card-actions>
+            </v-flex>
+            </v-layout>
         </v-card>
+         </v-layout>
+        </v-container>
     </div>
 </template>
-
 <script>
     export default {
         name: "TeamCards",
