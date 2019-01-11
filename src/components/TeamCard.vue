@@ -2,16 +2,16 @@
     <div>    
         <v-container fluid pa-1 my-1>
          <v-layout row justify-center fill-height > 
-            <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="getPlayers(team.strTeam, team.strTeamBadge)"
-              color="grey lighten-3" width="200">
             
-            <v-img   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
+            <v-card  class="mx-auto" 
+              color="grey lighten-3" width="180" min-height="250">
+            
+            <v-img @click="getPlayers(team.strTeam, team.strTeamBadge)"   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
             
             <v-layout row align-center > 
             <v-flex xs6>
-            <v-card-title pa-0 primary-title>
-                {{team.strTeam}}
+            <v-card-title @click="getPlayers(team.strTeam, team.strTeamBadge)" pa-0 primary-title>
+                <h4>{{team.strTeam}}</h4>
                 
             </v-card-title>
             </v-flex>
@@ -41,7 +41,7 @@
             </v-flex>
             </v-layout>
         </v-card>
-            </v-hover>
+           
          </v-layout>
         </v-container>
     </div>

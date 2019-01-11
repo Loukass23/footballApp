@@ -2,7 +2,7 @@
   <div>
     <v-stepper vertical>
       <v-stepper-header>
-        <v-stepper-step v-if="selectedLeague" complete step="1" @click="clearLeague()">
+        <v-stepper-step v-if="selectedLeague" complete editable step="1" @click="clearLeague()">
           <v-avatar @click="clearLeague()" color="grey lighten-4">
             <img v-bind:src=this.selectedLeague alt="avatar">
           </v-avatar>
@@ -12,7 +12,7 @@
 
         <v-divider></v-divider>
 
-        <v-stepper-step v-if="selectedTeam" complete step="2" @click="clearTeam()">
+        <v-stepper-step v-if="selectedTeam" complete editable step="2" @click="clearTeam()">
           <v-avatar @click="clearTeam()" color="grey lighten-4">
             <img v-bind:src=this.selectedTeam.badge alt="avatar">
           </v-avatar>

@@ -1,23 +1,22 @@
 <template>
     <div>    
         <v-container fluid pa-1 my-1>
-         <v-layout row justify-center fill-height > 
+         <v-layout row justify-center fill-height align-content-center> 
             <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="test(player.strPlayer)"
-              color="grey lighten-3" width="200">
+            <v-card align-self-center slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="test(player.strPlayer)"
+              color="grey lighten-3" width="180" min-height="250">
             
-            <v-img   v-bind:src=player.strCutout max-height="160" contain></v-img>
+            
             
             <v-layout row align-center > 
-            <v-flex xs6>
+            <v-flex xs12>
             <v-card-title pa-0 primary-title>
                 {{player.strPlayer}}
                 
             </v-card-title>
+            <v-img   v-bind:src=player.strCutout max-height="160" contain></v-img>
             </v-flex>
-             <v-flex xs6>
-            
-            </v-flex>
+             
             </v-layout>
         </v-card>
             </v-hover>
