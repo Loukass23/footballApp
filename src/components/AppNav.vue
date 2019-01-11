@@ -58,18 +58,18 @@
         },
         {
           icon: "group",
-          text: "Teams",
+          text: "Directory",
           route: "/teams"
+        },
+        {
+          icon: "date_range",
+          text: "Events",
+          route: "/schedule"
         },
         {
           icon: "favorite",
           text: "My Favorites",
           route: "/favteams"
-        },
-        {
-          icon: "date_range",
-          text: "Schedule",
-          route: "/schedule"
         },
         {
           icon: "compare_arrows",

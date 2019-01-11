@@ -52,10 +52,7 @@
 
       </div>
       <div v-else>
-          <!-- <v-toolbar>
-      <v-icon large color="grey darken-2">group</v-icon>
-      <v-toolbar-title>Select League</v-toolbar-title>
-    </v-toolbar> -->
+       
 
           <v-container grid-list-md text-xs-center>
             <v-layout row wrap align-center justify-center fill-height>

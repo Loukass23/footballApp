@@ -2,12 +2,27 @@
 <template>
 <div v-if="userTeams">
   
-  <v-card>
+  <v-card >
    <v-toolbar>
-  <v-icon large color="grey darken-2">perm_identity</v-icon>
-  <v-toolbar-title>Players Directory</v-toolbar-title>
+  <v-icon large color="grey darken-2">favorite</v-icon>
+  <v-toolbar-title  hidden-sm-and-down>Favorites Directory</v-toolbar-title>
   </v-toolbar>
+  <v-layout align-center hidden-sm-and-up justify-space-around>
+    
+      
+    <v-card>
+      <v-flex xs6 align-self-center>
+      <v-card-title>Flip Your phone</v-card-title>
+    </v-flex>
+      <v-flex xs6>
+      <v-icon x-large>screen_rotation</v-icon>
+      </v-flex>
+    </v-card>
+    
+  </v-layout>
+  
     <v-layout
+    hidden-xs-only
       justify-space-between
       pa-3
     >

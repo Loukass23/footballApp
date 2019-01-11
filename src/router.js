@@ -16,8 +16,13 @@ const router = new Router({
     },
     {
       path: "/teams",
-      name: "Teams",
+      name: "Directory",
       component: () => import("./views/Teams.vue")
+    },
+    {
+      path: "/schedule",
+      name: "Events",
+      component: () => import("./views/Schedule.vue")
     },
     {
       path: "/join",
@@ -28,11 +33,6 @@ const router = new Router({
       path: "/sign-in",
       name: "SignIn",
       component: () => import("./views/SignIn.vue")
-    },
-    {
-      path: "/schedule",
-      name: "Schedule",
-      component: () => import("./views/Schedule.vue")
     },
     {
       path: "/test",
