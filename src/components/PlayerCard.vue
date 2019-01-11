@@ -3,41 +3,20 @@
         <v-container fluid pa-1 my-1>
          <v-layout row justify-center fill-height > 
             <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="getPlayers(team.strTeam, team.strTeamBadge)"
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="test(player.strPlayer)"
               color="grey lighten-3" width="200">
             
-            <v-img   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
+            <v-img   v-bind:src=player.strCutout max-height="160" contain></v-img>
             
             <v-layout row align-center > 
             <v-flex xs6>
             <v-card-title pa-0 primary-title>
-                {{team.strTeam}}
+                {{player.strPlayer}}
                 
             </v-card-title>
             </v-flex>
              <v-flex xs6>
-            <v-card-actions  >
-                 <div v-if="isAuthenticated">
-                  <div v-for="(item, idx) in userTeams"  :key="idx">
-                        <div v-if="team.strTeam == item">
-                            <v-btn icon>
-                                <v-icon @click="removeTeam(idx)" color="red">favorite</v-icon>
-                            </v-btn>
-                        </div>
-                     </div> 
-                      <div v-if="!isFavorite2(team.strTeam , this.userTeams )">
-                <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon>favorite</v-icon>
-                    </v-btn>
-                 </div>
-                </div>                  
-                 <div v-else>
-                <v-btn @click="addTeam(team.strTeam)" icon>
-                        <v-icon>favorite</v-icon>
-                    </v-btn>
-                 </div>
-               
-            </v-card-actions>
+            
             </v-flex>
             </v-layout>
         </v-card>
@@ -47,16 +26,14 @@
     </div>
 </template>
 <script>
+
     export default {
-        name: "TeamCards",
+        name: "PlayerCard",
         props: {
-            team: null,
+            player: null,
             league: null
         },
         methods: {
-             getPlayers(team, badge){
-        this.$parent.getPlayers(team, badge);
-    },
             addTeam(teamName) {
                 if (this.isAuthenticated) {
                     this.$store.dispatch('addFavTeam', teamName);
@@ -91,6 +68,13 @@
                   
               }
                return heart 
+            },
+            setSelTeam(team, badge){
+                             this.$store.dispatch('addTeam', {team, badge})
+
+            },
+            test(th){
+                console.log(th)
             }
         },
         computed: {
