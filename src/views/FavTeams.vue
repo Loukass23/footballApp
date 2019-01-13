@@ -86,17 +86,13 @@
               <div class="blue--text mb-2">{{ selectPlayer.date}}</div>
               <div class="blue--text subheading font-weight-bold">{{ selectPlayer.position }}</div>
             </v-card-text>
-            <v-layout  v-if="selectPlayer"
-              tag="v-card-text"
-              text-xs-left
-              wrap
-            >
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Nationality:{{ selectPlayer.nationality }}</v-flex>
+            
+              <v-flex v-if="selectPlayer.nationality" tag="strong" xs5 text-xs-right mr-3 mb-2>Nationality: {{ selectPlayer.nationality }}</v-flex>
               
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Salary: {{ selectPlayer.salary}}</v-flex>
-              <v-flex tag="strong" xs5 text-xs-right mr-3 mb-2>Signed on: {{ selectPlayer.signed}}</v-flex>
-              <v-flex> {{ selectPlayer.description}}</v-flex>
-            </v-layout>
+              <v-flex v-if="selectPlayer.salary" tag="strong" xs5 text-xs-right mr-3 mb-2>Salary: {{ selectPlayer.salary}}</v-flex>
+              <v-flex v-if="selectPlayer.signed" tag="strong" xs5 text-xs-right mr-3 mb-2>Signed on: {{ selectPlayer.signed}}</v-flex>
+              <v-flex v-if="selectPlayer.description">  {{ selectPlayer.description}}</v-flex>
+            
           </v-card>
           </div>
         </v-scroll-y-transition>
@@ -186,7 +182,6 @@ console.log(item)
 this.selectPlayer = item
       },
     createItem(){
-       var teams = { "kkkn": "Bordeaux", "zdezdzed": "Caen" , "zedzed": "Caen" }
 
         var generateOptions = function ( object ) {
   return Object.keys(object).map( function( key ) {

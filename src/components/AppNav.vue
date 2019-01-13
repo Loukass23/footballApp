@@ -16,7 +16,7 @@
             </v-list-tile-content>
           </v-list-tile>
         </template>
-        <v-text-field solo-inverted flat label="Search" prepend-icon="search"></v-text-field>
+        <!-- <v-text-field solo-inverted flat label="Search" prepend-icon="search"></v-text-field> -->
 
       </v-list>
     </v-navigation-drawer>

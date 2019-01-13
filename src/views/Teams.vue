@@ -213,7 +213,6 @@
     },
     created() {
       this.loading = true;
-      console.log(this.players)
       if (this.getLeague) {
 
         let league = this.getLeague

@@ -12,7 +12,7 @@
               </v-toolbar>
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-text-field prepend-icon="person" name="name" label="Username" type="name"  v-model="username" required></v-text-field>
+                  <v-text-field prepend-icon="person" name="name" label="Username"   v-model="username" required></v-text-field>
                   <v-text-field prepend-icon="mail" name="email" label="Login" type="email"  v-model="email" :rules="emailRules" required></v-text-field>
                   <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" required v-model="password" :rules="passwordRules"></v-text-field>
                  <input v-if="errJoin" v-model="feedback" type="text" color="red" size="100">

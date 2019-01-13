@@ -20,7 +20,13 @@ export default {
     name: 'App',
     components: {
         AppNav
-    }
+    },
+    // created(){
+    //      let user = localStorage.getItem('user')
+    //      if(user){
+    //      this.$store.dispatch('setUser', user);
+    //      this.$store.dispatch('setIsAuthenticated', true);
+    // }}
 };
 </script>
 

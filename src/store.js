@@ -16,6 +16,9 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+      localStorage.setItem("useruid", payload.uid);
+      localStorage.setItem("userName", payload.displayName);
+      console.log(payload)
       router.push("/");
     },
     setIsAuthenticated(state, payload) {
@@ -40,6 +43,8 @@ export default new Vuex.Store({
         .catch(() => {
           commit("setUser", null);
           commit("setIsAuthenticated", false);
+          alert("adress is alresady used");
+          router.push("/sign-in");
         });
 
       firebase.auth().onAuthStateChanged(function(user) {
@@ -94,6 +99,7 @@ export default new Vuex.Store({
           commit("setIsAuthenticated", false);
           commit("setUser", null);
           commit("setUserFavTeams", null);
+          localStorage.clear();
           router.push("/");
         })
         .catch(() => {
@@ -127,6 +133,10 @@ export default new Vuex.Store({
         .database()
         .ref("users/" + state.user.uid + "/teams/" + key)
         .remove();
+    },
+    addUserCookies({ commit }, payload) {
+      commit("setUser", payload);
+      commit("setIsAuthenticated", true);
     }
   },
   getters: {

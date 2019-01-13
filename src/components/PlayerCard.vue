@@ -3,7 +3,7 @@
         <v-container fluid pa-1 my-1>
          <v-layout row justify-center fill-height align-content-end> 
             <v-hover>
-            <v-card align-self-center slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="test(player.strPlayer)"
+            <v-card align-self-center slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" @click="dialog = true"
               color="grey lighten-3" width="180" min-height="250">
             
             
@@ -22,6 +22,18 @@
             </v-hover>
          </v-layout>
         </v-container>
+        <v-dialog v-model="dialog" max-width="290">
+            <v-container>
+                <v-layout>
+                    <v-flex row>
+                    <v-card>
+      <v-card-title>{{player.strPlayer}}</v-card-title>
+                    </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+
+    </v-dialog>
     </div>
 </template>
 <script>
@@ -30,7 +42,8 @@
         name: "PlayerCard",
         props: {
             player: null,
-            league: null
+            league: null,
+            dialog: false
         },
         methods: {
             addTeam(teamName) {
