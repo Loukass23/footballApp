@@ -16,9 +16,11 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      localStorage.setItem("useruid", payload.uid);
-      localStorage.setItem("userName", payload.displayName);
-      console.log(payload)
+      if (payload.uid != null) {
+        localStorage.setItem("useruid", payload.uid);
+        localStorage.setItem("userName", payload.displayName);
+      }
+      console.log(payload);
       router.push("/");
     },
     setIsAuthenticated(state, payload) {

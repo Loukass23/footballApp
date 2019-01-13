@@ -21,12 +21,16 @@ export default {
     components: {
         AppNav
     },
-    // created(){
-    //      let user = localStorage.getItem('user')
-    //      if(user){
-    //      this.$store.dispatch('setUser', user);
-    //      this.$store.dispatch('setIsAuthenticated', true);
-    // }}
+    created(){
+if(localStorage.getItem('useruid'))
+{
+    let userObj = {uid: localStorage.getItem('useruid'),
+                        displayName: localStorage.getItem('userName')}
+                        console.log(userObj)
+         this.$store.dispatch('addUserCookies', userObj);
+}
+        
+    }
 };
 </script>
 

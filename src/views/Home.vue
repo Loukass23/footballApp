@@ -52,14 +52,6 @@ export default {
         getUser() {
             return this.$store.getters.getUser;
         }
-    },
-    created(){
-         if(!this.isAuthenticated){
-              
-        let userObj = {uid: localStorage.getItem('useruid'),
-                        displayName: localStorage.getItem('userName')}
-                        console.log(userObj)
-         this.$store.dispatch('addUserCookies', userObj);
-    }}
+    }
 };
 </script>
