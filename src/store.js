@@ -16,7 +16,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      if (payload.uid != null) {
+      if (payload != null) {
         localStorage.setItem("useruid", payload.uid);
         localStorage.setItem("userName", payload.displayName);
       }
@@ -98,10 +98,11 @@ export default new Vuex.Store({
         .auth()
         .signOut()
         .then(() => {
+          localStorage.clear();
           commit("setIsAuthenticated", false);
           commit("setUser", null);
           commit("setUserFavTeams", null);
-          localStorage.clear();
+          
           router.push("/");
         })
         .catch(() => {

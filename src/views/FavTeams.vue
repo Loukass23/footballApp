@@ -1,7 +1,6 @@
 
 <template>
-<div v-if="userTeams">
-  
+<div v-if="userTeams">  
   <v-card >
    <v-toolbar>
   <v-icon large color="grey darken-2">favorite</v-icon>
@@ -27,13 +26,12 @@
       pa-3
     >
       <v-flex xs5>
+        
         <v-treeview       
           :items="items"
           :load-children="fetchUsers"
           :active.sync="active"
           :open.sync="open"
-          activatable
-          active-class="primary--text"
           class="grey lighten-5"
           open-on-click
           transition
@@ -42,8 +40,8 @@
           <v-icon  @click="test(item)"
             v-if="!item.children"
             slot="prepend"
-            slot-scope="{ item, active }"
-            :color="active ? 'primary' : ''"
+            slot-scope="{ item }"
+            :color='primary'
           >perm_identity</v-icon>
         </v-treeview>
       </v-flex>
@@ -51,7 +49,7 @@
         d-flex
         text-xs-center
       >
-        <v-scroll-y-transition mode="out-in">
+        <v-scroll-y-transition mode="out-in" >
           <div
             v-if="!selectPlayer"
             class="title grey--text text--lighten-1 font-weight-light"
@@ -66,6 +64,7 @@
             class="pt-4 mx-auto"
             flat
             max-width="400"
+            id="rightSide"
           >
 
             <v-card-text>
@@ -210,4 +209,5 @@ this.items.push(...generateOptions(this.userTeams))
 </script>
 
 <style scoped>
+
 </style>

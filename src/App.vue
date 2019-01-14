@@ -22,7 +22,7 @@ export default {
         AppNav
     },
     created(){
-if(localStorage.getItem('useruid'))
+if(localStorage.getItem('useruid') != null)
 {
     let userObj = {uid: localStorage.getItem('useruid'),
                         displayName: localStorage.getItem('userName')}

@@ -1,31 +1,6 @@
 <template>
   <div>
-    <v-stepper vertical>
-      <v-stepper-header>
-        <v-stepper-step v-if="selectedLeague" complete editable step="1" @click="clearLeague()">
-          <v-avatar @click="clearLeague()" color="grey lighten-4">
-            <img v-bind:src=this.selectedLeague alt="avatar">
-          </v-avatar>
-        </v-stepper-step>
-        <v-stepper-step v-else step="1">
-          League</v-stepper-step>
-
-        <v-divider></v-divider>
-
-        <v-stepper-step v-if="selectedTeam" complete editable step="2" @click="clearTeam()">
-          <v-avatar @click="clearTeam()" color="grey lighten-4">
-            <img v-bind:src=this.selectedTeam.badge alt="avatar">
-          </v-avatar>
-        </v-stepper-step>
-        <v-stepper-step v-else step="2">Team</v-stepper-step>
-
-        <v-divider></v-divider>
-
-        <v-stepper-step step="3">
-          Player
-        </v-stepper-step>
-      </v-stepper-header>
-    </v-stepper>
+   <team-selector></team-selector>
 
     <div>
 
@@ -85,13 +60,16 @@
   import ScaleLoader from '@/components/ScaleLoader.vue'
   import TeamCard from '@/components/TeamCard.vue';
   import PlayerCard from '@/components/PlayerCard.vue';
+  import TeamSelector from '@/components/TeamSelector.vue';
+
   import axios from "axios";
   export default {
     name: "Teams",
     components: {
       TeamCard,
       PlayerCard,
-      ScaleLoader
+      ScaleLoader,
+      TeamSelector
     },
     data() {
       return {

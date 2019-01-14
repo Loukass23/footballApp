@@ -7,6 +7,6 @@ Vue.use(Vuetify, {
   iconfont: "md",
   theme: {
     primary: colors.indigo,
-    scondary: "#4d2c2c"
+    secondary: "#4d2c2c"
   }
 });

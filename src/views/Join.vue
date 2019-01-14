@@ -1,7 +1,33 @@
 <template>
-    <div>
- <v-content>
+<div>
+       <v-toolbar>
+      <v-btn icon light>
+        <v-icon large >add_circle</v-icon>
+      </v-btn>
+
+
+      <v-spacer></v-spacer>
+
+      <v-toolbar-title>Join</v-toolbar-title>
+     
+    </v-toolbar>
+
       <v-container grid-list-xl>
+      <v-layout align-content-center justify-center>
+     <v-flex align-self-center xs12 >   
+    <v-alert 
+      v-model="info"
+      dismissible
+      type="info"
+      icon="account_circle"
+    >
+    <v-btn small flat  to="/sign-in">
+     <h5>Already a user? Sign in</h5></v-btn>
+     
+      </v-alert>
+    </v-flex>
+    </v-layout>
+    
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md6>
             <v-card >
@@ -51,7 +77,7 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
+ 
     </div>
 </template>
 
@@ -60,6 +86,7 @@
 export default {
   data() {
     return {
+       info: true,
       valid: false,
       email: "",
       username:"",
