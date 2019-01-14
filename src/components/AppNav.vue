@@ -58,13 +58,13 @@
         },
         {
           icon: "group",
-          text: "Directory",
+          text: "Teams",
           route: "/teams"
         },
         {
           icon: "date_range",
           text: "Events",
-          route: "/schedule"
+          route: "/events"
         },
         {
           icon: "favorite",

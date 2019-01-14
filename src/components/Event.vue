@@ -24,10 +24,16 @@
                     </v-layout>
                   </v-container>
                 </v-img>
+                
                 <div v-else>
-                    {{item.strEvent}}
+                    <h1>{{item.strEvent}}</h1>
                     </div>
+                    <v-flex v-if="!next">
 <v-card-title>{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
+                    </v-flex>
+                    <v-flex v-else>
+<v-card-title>{{item.strDate}} - {{item.strTime}}</v-card-title>
+                    </v-flex>
                 
               </v-card>
                 
@@ -46,14 +52,15 @@ import axios from "axios";
         props: {
             events: [],
             league: null,
-            number: null
+            number: null,
+            next: null
         },
         methods: {
-            getPastEvents(leagueId) {
+            getEvents(leagueId, time) {
                 console.log(leagueId)
         axios
           .get(
-            "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=" +
+            "https://www.thesportsdb.com/api/v1/json/1/events"+time+"league.php?id=" +
             leagueId
           )
           .then(response => {
@@ -65,10 +72,12 @@ import axios from "axios";
           .catch(() => {
             this.teams = [];
           });
-      },
+      }
         },
         created(){
-            this.getPastEvents(this.league.leagueId)
+            if(!this.next) this.getEvents(this.league.leagueId, 'past')
+            else this.getEvents(this.league.leagueId, 'next')
+           
         }
     }
 </script>

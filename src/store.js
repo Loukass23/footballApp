@@ -11,7 +11,8 @@ export default new Vuex.Store({
     isAuthenticated: false,
     favTeam: [],
     leagueSelected: null,
-    teamSelected: null
+    teamSelected: null,
+    posts: []
   },
   mutations: {
     setUser(state, payload) {
@@ -20,7 +21,6 @@ export default new Vuex.Store({
         localStorage.setItem("useruid", payload.uid);
         localStorage.setItem("userName", payload.displayName);
       }
-      console.log(payload);
       router.push("/");
     },
     setIsAuthenticated(state, payload) {
@@ -35,6 +35,9 @@ export default new Vuex.Store({
     },
     setTeam(state, payload) {
       state.teamSelected = payload;
+    },
+    setPosts(state, payload) {
+      state.posts = payload;
     }
   },
   actions: {
@@ -102,7 +105,6 @@ export default new Vuex.Store({
           commit("setIsAuthenticated", false);
           commit("setUser", null);
           commit("setUserFavTeams", null);
-          
           router.push("/");
         })
         .catch(() => {
@@ -117,6 +119,28 @@ export default new Vuex.Store({
         .child(state.user.uid + "/teams")
         .push(payload);
     },
+    addChat({ state }, sbody) {
+      var postData = {
+        name: state.user.displayName,
+        body: sbody,
+        date: new Date()
+      };
+      // Get a key for a new Post
+      let newPostKey = firebase
+        .database()
+        .ref()
+        .child("posts")
+        .push().key;
+
+      // Write the new post's data simultaneously in the posts list and the user's post list
+      let updates = {};
+      updates[newPostKey] = postData;
+
+      firebase
+        .database()
+        .ref("posts")
+        .update(updates);
+    },
     addLeague({ commit }, payload) {
       commit("setLeague", payload);
     },
@@ -129,6 +153,14 @@ export default new Vuex.Store({
         .ref("users/" + state.user.uid + "/teams")
         .once("value", snapshot => {
           commit("setUserFavTeams", snapshot.val());
+        });
+    },
+    getPosts({ commit }) {
+      return firebase
+        .database()
+        .ref("posts/")
+        .once("value", snapshot => {
+          commit("setPosts", snapshot.val());
         });
     },
     removeFavTeam({ state }, key) {
@@ -160,6 +192,9 @@ export default new Vuex.Store({
     },
     selTeam(state) {
       return state.teamSelected;
+    },
+    getPosts(state) {
+      return state.posts;
     }
   }
 });

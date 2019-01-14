@@ -20,9 +20,9 @@ const router = new Router({
       component: () => import("./views/Teams.vue")
     },
     {
-      path: "/schedule",
+      path: "/events",
       name: "Events",
-      component: () => import("./views/Schedule.vue")
+      component: () => import("./views/Events.vue")
     },
     {
       path: "/join",
@@ -43,6 +43,14 @@ const router = new Router({
       path: "/favteams",
       name: "FavTeams",
       component: () => import("./views/FavTeams.vue"),
+      meta: {
+        authRequired: true
+      }
+    },
+    {
+      path: "/chat",
+      name: "Chat",
+      component: () => import("./views/Chat.vue"),
       meta: {
         authRequired: true
       }

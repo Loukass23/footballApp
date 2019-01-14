@@ -18,8 +18,13 @@ export default {
             return this.$store.state.favTeam;
         }
     },
+    mounted() {
+        this.getTeams();
+    },
     methods: {
-       
+        getTeams() {
+            this.$store.dispatch('getFavTeam');
+        }
     },
     created() {
         
