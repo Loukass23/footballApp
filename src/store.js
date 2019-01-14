@@ -120,10 +120,11 @@ export default new Vuex.Store({
         .push(payload);
     },
     addChat({ state }, sbody) {
-      var postData = {
+      let d = new Date()
+      let postData = {
         name: state.user.displayName,
         body: sbody,
-        date: new Date()
+        date: d.toUTCString()
       };
       // Get a key for a new Post
       let newPostKey = firebase

@@ -57,11 +57,11 @@
             <v-card >
               <v-toolbar dark color="primary">
                   <v-icon>account_circle</v-icon>
-                <v-toolbar-title>Connect with Google account</v-toolbar-title>
+                <v-toolbar-title>Google account</v-toolbar-title>
               
               </v-toolbar>
               <v-card-text>
-                <v-btn color="primary" @click="signInWithGoogle">Sign in with Google</v-btn>
+                <v-btn color="primary" @click="signInWithGoogle">Sign in</v-btn>
               </v-card-text>
               <v-card-actions>
                  

@@ -1,61 +1,123 @@
 <template>
-     <div>
-      <input type="text" v-model="msg">
-      <button v-on:click="writeNewPost()">Send</button>
+    <div>
+         <v-toolbar>
+      <v-btn icon light>
+        <v-icon large >chat_bubble</v-icon>
+      </v-btn>
 
-      <hr>
 
-      <div v-for="(msg, index) in posts" :key="index">
-        <p>{{msg.name}}</p>
-        <p>{{msg.date}}</p>
-        <p>{{msg.body}}</p>
-      </div>
-     </div>
+      <v-spacer></v-spacer>
 
+      <v-toolbar-title>Chat</v-toolbar-title>
+     
+    </v-toolbar>
+    <v-container text-xs-center>
+        <v-layout >
+            
+            <v-flex xs10 >
+        <v-text-field type="text" v-model="msg">Type your message</v-text-field>
+            </v-flex>
+            <v-flex xs2>
+        <v-btn v-on:click="writeNewPost()">Send</v-btn>
+            </v-flex>
+            
+        </v-layout>
+
+        
+            
+            <v-timeline dense>
+                <div v-for="(msg, index) in posts" :key="index" >
+
+                <v-timeline-item v-if="msg.name == getUser.displayName" color="primary darken-2">
+
+                    <v-card-text >
+                        {{msg.date}}
+
+                    </v-card-text>
+                    <v-flex>
+
+                        <v-card class="elevation-2" color="primary lighten-1">
+                            <h4>{{msg.name}} </h4>
+                            <v-card-title>{{msg.body}}</v-card-title>
+
+
+                        </v-card>
+                    </v-flex>
+                </v-timeline-item>
+              
+                <v-timeline-item v-else color="secondary lighten-2">
+
+                    <v-card-text >
+                        {{msg.date}}
+
+                    </v-card-text>
+                    <v-flex>
+
+                        <v-card class="elevation-2" color="secondary lighten-2">
+                           <h4>{{msg.name}} </h4>
+                            <v-card-title>{{msg.body}}</v-card-title>
+
+
+                        </v-card>
+                    </v-flex>
+                </v-timeline-item>
+                </div>
+
+            </v-timeline>
+        </v-container>
+    </div>
 </template>
 
 <script>
     export default {
         data() {
-    return {
-      msg: "",
-      userEmail: null,
-      messages: []
-    };
-        
-    },
-    methods: {
-         writeNewPost() {
-      
-this.$store.dispatch('addChat', this.msg)
-     
-    },
-    getPosts() {
-      // Access "posts" collection
-      firebase
-        .database()
-        .ref("posts")
-        .once("value", data => {
-          console.log(data.val());
-          this.messages = data.val();
-        });
-    },
-     retrievePost() {
-            this.$store.dispatch('getPosts');
+            return {
+                msg: "",
+                userEmail: null,
+                messages: []
+            };
+
+        },
+        methods: {
+            writeNewPost() {
+
+                this.$store.dispatch('addChat', this.msg)
+                this.$store.dispatch('getPosts');
+                console.log(this.getUser)
+
+            },
+            getPost() {
+                this.$store.dispatch('getPosts');
+            },
+            reverseObject(object) {
+        var newObject = {};
+        var keys = [];
+        for (var key in object) {
+            keys.push(key);
         }
-  },
-  computed: {
-       posts() {
-                return this.$store.getters.getPosts;
-            }
-  },
- 
-    created(){
-        this.retrievePost()
-        
+        for (var i = keys.length - 1; i >= 0; i--) {
+
+          var value = object[keys[i]];
+          newObject[keys[i]]= value;
+        }       
+
+        return newObject;
+      }
+        },
+        computed: {
+            posts() {
+                return this.reverseObject(this.$store.getters.getPosts);
+            },
+             getUser() {
+            return this.$store.getters.getUser;
+        }
+        },
+
+        created() {
+            this.getPost()
+
+        }
     }
-    }
-    
 </script>
 
 <style scoped>
