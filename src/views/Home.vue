@@ -1,7 +1,24 @@
 <template>
 <div>
 <team-selector></team-selector>
-<v-container mx-0 px-0 >
+<v-parallax my-0
+    dark
+    height="200"
+    src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+   >
+    <v-layout
+      align-center
+      column
+      justify-center
+      
+    >
+  
+      <h1 class="display-2 font-weight-bold black--text">Football App</h1>
+      <h4 class="subheading black--text">All you need about football!</h4>
+    </v-layout>
+  </v-parallax>
+  
+
     <v-layout  v-if="!isAuthenticated" align-content-center justify-center>
      <v-flex align-self-center xs12 >   
     <v-alert 
@@ -16,23 +33,16 @@
      
       </v-alert>
     </v-flex>
+    </v-layout >
+    <v-layout column xs12 align-content-center justify-center v-if="getLeague">
+   <v-card color="primary lighten-2">
+         <v-card-title class="font-weight-bold ">Last game {{getLeague.leagueName}}</v-card-title>
+         
+         
+      <event :league='getLeague' :number=1></event>
+      <v-btn>see more results</v-btn>
+      </v-card>
     </v-layout>
-  <v-parallax
-    dark
-    height="200"
-   >
-    <v-layout
-      align-center
-      column
-      justify-start
-      
-    >
-    <v-icon x-large>add</v-icon>
-      <h1 class="display-2 font-weight-thin mb-3">Football App</h1>
-      <h4 class="subheading">All you need about football!</h4>
-    </v-layout>
-  </v-parallax>
-  
 
  <div v-if="isAuthenticated">   
      <v-layout>
@@ -42,11 +52,9 @@
      </v-layout>
 <f-team></f-team> 
       </div>
-      <div v-else>
-        Log in for exclusive content
-        </div>
+      
 <!-- <odd-cards></odd-cards> -->
-</v-container>
+
 </div>
 </template>
 
@@ -55,11 +63,12 @@ import OddCards from '@/components/OddCards.vue';
 import FTeam from '@/components/FTeam.vue';
 import TeamCard from '@/components/TeamCard.vue';
 import TeamSelector from '@/components/TeamSelector.vue';
+import Event from '@/components/Event.vue';
 
 export default {
     name: 'Home',
     components: {OddCards,
-    FTeam, TeamCard, TeamSelector
+    FTeam, TeamCard, TeamSelector, Event
     },
     data() {
         return {
@@ -69,7 +78,10 @@ export default {
     },
     
     computed: {
+        getLeague() {
 
+        return this.$store.getters.getLeague;
+      },
         isAuthenticated() {
             return this.$store.getters.isAuthenticated;
         },

@@ -15,7 +15,7 @@
                     <h3>{{getLeague.leagueName}}</h3></v-flex>
                 </v-layout>
                 <v-flex v-else align-self-center>
-                    <v-btn flat color="primary"  @click="clearLeague()">
+                    <v-btn  outline color="primary"  @click="clearLeague()">
                    1. Select League </v-btn>
             <!-- <v-btn icon>
                 <v-icon @click="clearLeague()" >add</v-icon>
@@ -34,7 +34,7 @@
                     <h3>{{selectedTeam.team}}</h3></v-flex>
              </v-layout>
                  <v-flex v-else align-self-center>
-                    <v-btn flat color="primary" @click="clearTeam()">
+                    <v-btn  outline color="primary" @click="clearTeam()">
                     2. Select Team </v-btn>
             <!-- <v-btn icon>
                 <v-icon @click="clearTeam()" >add</v-icon>
