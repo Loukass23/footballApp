@@ -17,23 +17,33 @@
                     fluid
                     pa-2
                   >
-                    <v-layout fill-height >
-                      <v-flex  xs12 align-end flexbox>
-                        <span class="headline white--text" v-text="item.strEvent"></span>
+                    <v-layout column fill-height  >
+                      <v-flex xs12 align-self-center>
+                        <span class="headline white--text text-xs-center" v-text="item.strEvent"></span>
+                     
                       </v-flex>
+                       <v-flex  xs12 align-self-center class="primary headline white--text text-xs-center" align-content-end v-if="!next">
+<v-card-title>{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
+                    </v-flex>
+                    <v-flex xs12 align-self-center class="secondary  white--text text-xs-center" align-content-end v-else>
+<v-card-title>{{item.strDate}} - {{item.strTime}}</v-card-title>
+                    </v-flex>
                     </v-layout>
                   </v-container>
                 </v-img>
                 
                 <div v-else>
-                    <h1>{{item.strEvent}}</h1>
-                    </div>
-                    <v-flex v-if="!next">
+                    <v-card color="primary" height="150">
+                    <v-card-title class=" headline white--text text-xs-center"  v-text="item.strEvent"></v-card-title>
+                    </v-card>
+                     <v-flex v-if="!next">
 <v-card-title>{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
                     </v-flex>
                     <v-flex v-else>
 <v-card-title>{{item.strDate}} - {{item.strTime}}</v-card-title>
                     </v-flex>
+                    </div>
+                   
                 
               </v-card>
                 

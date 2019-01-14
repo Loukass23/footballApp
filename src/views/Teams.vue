@@ -3,13 +3,13 @@
    <team-selector></team-selector>
 
     <div>
-
-      <div v-if="getLeague">
-        <div v-if="loading">
+<div v-if="loading">
           <v-container>
             <scale-loader></scale-loader>
           </v-container>
         </div>
+      <div v-if="getLeague">
+        
 
         <v-container grid-list-md pa-0 ma-auto>
 
@@ -76,7 +76,7 @@
       return {
         teams: [],
         players: null,
-        loading: true,
+        loading: false,
         selectedLeague: null,
         ligues: {
           "ligues": [{
@@ -111,6 +111,7 @@
     },
     methods: {
       getTeams(league, leagueId, leagueName, leagueImg) {
+        this.loading = true;
         axios
           .get(
             "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=" +
@@ -191,7 +192,7 @@
 
     },
     created() {
-      this.loading = true;
+      
       if (this.getLeague) {
 
         let league = this.getLeague
