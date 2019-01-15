@@ -21,31 +21,56 @@
                 </v-flex>
             </v-layout>
 
-            <v-layout my-2 v-if="isAuthenticated">
-                <v-card>
-                    <v-card-title>Hi {{getUser.displayName}}, it is nice to see you again, here is what you missed
+            <v-layout column my-2 v-if="isAuthenticated">
+                <v-card color="grey lighten-4" xs12>
+                    <v-card-title>Hi {{getUser.displayName}}, it is nice to see you again, here 
                     </v-card-title>
                 </v-card>
             </v-layout>
+            <v-layout column my-2 v-if="isAuthenticated">
+                <v-card color="secondary lighten-4" my-4 xs12>
+                    <f-team></f-team>
+                </v-card>
+            </v-layout>
 
-            <v-layout  my-3  column xs12 align-content-center justify-center v-if="getLeague">
+            <v-layout my-3 column xs12 align-content-center justify-center v-if="getLeague">
                 <v-card height='300' color="primary lighten-4">
-                    <v-card-title class="font-weight-bold text text-xs-center ">Last game {{getLeague.leagueName}}</v-card-title>
+                    <v-flex>
+                        <v-card-title class="font-weight-bold text text-xs-center ">Last game {{getLeague.leagueName}}</v-card-title>
+                        <v-btn  small fab flat>
+                            more
+                        </v-btn>
+                    </v-flex>
                     <event :league='getLeague' :number=1 :next='false'></event>
+
+                </v-card>
+            </v-layout>
+            <v-layout column my-2 v-else>
+                <v-card color="green lighten-4" >
+                    <v-layout  align-content-center justify-center>
+                    <v-flex xs6>
+                    <v-card-title>For more content 
+                    </v-card-title>
+                    </v-flex>
+                     <v-flex align-self-center xs4>
+                     <v-btn small outline color="primary" @click="$router.push('teams')">
+                   Select League </v-btn>
+                     </v-flex>
+                    </v-layout>
                 </v-card>
             </v-layout>
             <v-layout my-3 column xs12 align-content-center justify-center v-if="getLeague">
-                <v-card height='300' color="secondary lighten-4">
-
-
+                <v-card height='300' color="primary lighten-4">
                     <v-card-title class="font-weight-bold ">Next game {{getLeague.leagueName}}</v-card-title>
-
+                    <v-btn small fab flat>
+                        more
+                    </v-btn>
                     <event :league='getLeague' :number=1 :next='true'></event>
 
                 </v-card>
             </v-layout>
 
-            <f-team></f-team>
+
 
             <!-- <odd-cards></odd-cards> -->
         </v-container>

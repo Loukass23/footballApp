@@ -56,6 +56,7 @@
         methods: {
              getPlayers(team, badge){
         this.$parent.getPlayers(team, badge);
+        this.$router.push('/');
     },
             addTeam(teamName) {
                 if (this.isAuthenticated) {

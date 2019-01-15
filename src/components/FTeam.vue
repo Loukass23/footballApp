@@ -1,11 +1,17 @@
 
 <template>
     <v-container >
-        <v-layout column>
-            <h1 class="title my-3">Favorite Teams</h1>
-            <div v-for="(item, idx) in userTeams" class="subheading mb-2" :key="idx">
-                {{item}}
-            </div>
+         <h1 class="title my-3">Favorite Teams</h1>
+        <v-layout row wrap xs12>
+           
+           
+        
+            <div v-for="(item, idx) in userTeams" class="text-xs-center" :key="idx">
+                 
+          <v-chip >{{item}}</v-chip>
+        </div>
+              
+           
         </v-layout>
     </v-container>
 </template>
@@ -24,7 +30,14 @@ export default {
     methods: {
         getTeams() {
             this.$store.dispatch('getFavTeam');
-        }
+        },
+        removeTeam(teamName) {
+                
+               console.log(teamName)
+                    this.$store.dispatch('removeFavTeam', teamName);
+                    this.getTeams();
+               
+            }
     },
     created() {
         
