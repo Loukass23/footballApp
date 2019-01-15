@@ -1,10 +1,9 @@
 
 <template>
-    <v-container >
-         <h1 class="title my-3">Favorite Teams</h1>
+    <v-container align-content-center justify-center >
+         <h1 class=" text title my-3 font-weight-bold black--text">Favorite Teams</h1>
         <v-layout row wrap xs12>
-           
-           
+ 
         
             <div v-for="(item, idx) in userTeams" class="text-xs-center" :key="idx">
                  

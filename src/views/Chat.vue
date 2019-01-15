@@ -18,7 +18,7 @@
         <v-text-field type="text" v-model="msg">Type your message</v-text-field>
             </v-flex>
             <v-flex xs2>
-        <v-btn v-on:click="writeNewPost()">Send</v-btn>
+        <v-btn fab v-on:click="writeNewPost()">Send</v-btn>
             </v-flex>
             
         </v-layout>
@@ -45,7 +45,7 @@
                     </v-flex>
                 </v-timeline-item>
               
-                <v-timeline-item v-else color="secondary lighten-2">
+                <v-timeline-item v-else color="secondary ">
 
                     <v-card-text >
                         {{msg.date}}
@@ -53,7 +53,7 @@
                     </v-card-text>
                     <v-flex>
 
-                        <v-card class="elevation-2" color="secondary lighten-2">
+                        <v-card class="elevation-2" color="secondary ">
                            <h4>{{msg.name}} </h4>
                             <v-card-title>{{msg.body}}</v-card-title>
 

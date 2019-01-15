@@ -7,11 +7,11 @@
             <div v-if="idx < number">
                 <v-flex xs12>
                     <v-card>
-                        <v-img v-if="item.strThumb" :src="item.strThumb" height="200px">
+                        <v-img v-if="item.strThumb" :src="item.strThumb" height="220px">
                             <v-container fill-height fluid pa-2>
                                 <v-layout column fill-height>
                                     <v-flex xs12 align-self-center>
-                                        <span class="headline white--text text-xs-center" v-text="item.strEvent"></span>
+                                        <span class=" primary headline white--text text-xs-center" v-text="item.strEvent"></span>
                     
                                     </v-flex>
                                     
@@ -28,22 +28,23 @@
                         </v-img>
 
                         <div v-else>
-                               <v-layout column fill-height>
-                                    <v-card xs12  height="200">
-                                        <v-card-title class=" headline black--text text-xs-center" v-text="item.strEvent"></v-card-title>
+                            
+                               <v-layout xs12 column fill-height align-center justify-center>
+                                    <v-card color="primary " width="100%"  height="220">
+                                        <v-card-text class=" headline black--text text-xs-center" v-text="item.strEvent"></v-card-text>
 
                                         <v-flex xs12 align-self-center class="headline black--text text-xs-center"
                                             align-content-end v-if="!next">
-                                            <v-card-title>{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
+                                            <v-card-text  class=" headline black--text text-xs-center">{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-text>
                                         </v-flex>
                                         <v-flex xs12 align-self-center class="black--text text-xs-center"
                                             align-content-end v-else>
-                                            <v-card-title>Date: {{item.strDate}} - {{item.strTime}}</v-card-title>
-                                        </v-flex>
-                                        <v-flex>
+                                            <v-card-title  class=" headline black--text text-xs-center">Date: {{item.strDate}} - {{item.strTime}}</v-card-title>
                                         <v-btn color="primary" dark @click="dialog = true" large icon>
                 <v-icon>map</v-icon>
-              </v-btn></v-flex>
+              </v-btn>
+                                        </v-flex>
+                                        
                                     </v-card>
                                </v-layout>
                         </div>

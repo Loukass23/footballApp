@@ -8,6 +8,7 @@
             <scale-loader></scale-loader>
           </v-container>
         </div>
+ <div v-else>       
       <div v-if="getLeague">
         
 
@@ -52,7 +53,7 @@
           </v-container>
        </div>
         
-      
+ </div>
     </div>
   </div>
 </template>

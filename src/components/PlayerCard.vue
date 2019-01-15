@@ -14,7 +14,9 @@
                 {{player.strPlayer}}
                 
             </v-card-title>
-            <v-img   v-bind:src=player.strCutout max-height="160" contain></v-img>
+            <v-img v-if="player.strCutout"  v-bind:src=player.strCutout max-height="160" contain></v-img>
+            <v-img v-else  src="https://res.cloudinary.com/ds3w3iwbk/image/upload/v1547575682/Mike.jpg" max-height="160" contain></v-img>
+            
             </v-flex>
              
             </v-layout>

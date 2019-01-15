@@ -98,7 +98,6 @@
         return this.$store.getters.getLeague;
       },
       selectedTeam() {
-          console.log(this.$store.getters.selTeam)
         return this.$store.getters.selTeam;
       }
         }

@@ -35,9 +35,9 @@ const router = new Router({
       component: () => import("./views/SignIn.vue")
     },
     {
-      path: "/test",
-      name: "Test",
-      component: () => import("./views/ToRemove.vue")
+      path: "/players",
+      name: "Players",
+      component: () => import("./views/Players.vue")
     },
     {
       path: "/favteams",

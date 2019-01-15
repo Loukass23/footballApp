@@ -62,6 +62,11 @@
           route: "/teams"
         },
         {
+          icon: "person",
+          text: "Players",
+          route: "/players"
+        },
+        {
           icon: "date_range",
           text: "Events",
           route: "/events"
@@ -70,11 +75,6 @@
           icon: "favorite",
           text: "My Favorites",
           route: "/favteams"
-        },
-        {
-          icon: "compare_arrows",
-          text: "Odds",
-          route: "/odds"
         },
         {
           divider: true
