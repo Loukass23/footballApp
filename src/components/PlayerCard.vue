@@ -30,6 +30,9 @@
                     <v-flex row>
                     <v-card>
       <v-card-title>{{player.strPlayer}}</v-card-title>
+      <v-card-text>{{player.strNationality}}</v-card-text>
+      <v-card-text>{{player.Bateborn}}</v-card-text>
+      <v-card-text>{{player.strPosition}}</v-card-text>
                     </v-card>
                     </v-flex>
                 </v-layout>
@@ -86,10 +89,10 @@
             setSelTeam(team, badge){
                              this.$store.dispatch('addTeam', {team, badge})
 
-            },
-            test(th){
-                console.log(th)
             }
+            
+               
+            
         },
         computed: {
             isAuthenticated() {

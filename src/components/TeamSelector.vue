@@ -4,8 +4,8 @@
             <v-layout  align-content-center justify-center>
                 <v-layout justify-space-between v-if="getLeague">
                    
-        <v-btn icon>
-                <v-icon @click="clearLeague()" small>edit</v-icon>
+        <v-btn @click="clearLeague()" icon>
+                <v-icon  small>edit</v-icon>
                 </v-btn>
         <v-avatar @click="clearLeague()" color="grey lighten-4">
             <img v-bind:src=getLeague.leagueImg alt="avatar">            
@@ -23,8 +23,8 @@
                 <v-toolbar-title>Select League</v-toolbar-title>-->
                 </v-flex> 
                   <v-layout justify-space-between v-if="selectedTeam">
-                      <v-btn icon>
-                <v-icon @click="clearTeam()" small >edit</v-icon>
+                      <v-btn @click="clearTeam()" icon>
+                <v-icon  small >edit</v-icon>
                 </v-btn>
           <v-avatar @click="clearTeam()" color="grey lighten-4">
             <img v-bind:src=selectedTeam.badge alt="avatar">

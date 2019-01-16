@@ -44,6 +44,10 @@
       "parser": "babel-eslint"
     }
   },
+  "eslint.validate": [
+    "javascript",
+    {"autoFix": true, "language": "vue"}
+],
   "postcss": {
     "plugins": {
       "autoprefixer": {}

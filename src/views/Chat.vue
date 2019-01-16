@@ -1,9 +1,9 @@
 <template>
     <div>
          <v-toolbar>
-      <v-btn icon light>
-        <v-icon large >chat_bubble</v-icon>
-      </v-btn>
+      
+        <v-icon light large >chat_bubble</v-icon>
+      
 
 
       <v-spacer></v-spacer>
@@ -28,7 +28,7 @@
             <v-timeline dense>
                 <div v-for="(msg, index) in posts" :key="index" >
 
-                <v-timeline-item v-if="msg.name == getUser.displayName" color="primary darken-2">
+                <v-timeline-item small fill-dot v-if="msg.name == getUser.displayName" color="primary darken-2">
 
                     <v-card-text >
                         {{msg.date}}
@@ -45,7 +45,7 @@
                     </v-flex>
                 </v-timeline-item>
               
-                <v-timeline-item v-else color="secondary ">
+                <v-timeline-item  small fill-dot v-else color="secondary ">
 
                     <v-card-text >
                         {{msg.date}}

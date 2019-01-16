@@ -14,7 +14,7 @@
 
         <v-container grid-list-md pa-0 ma-auto>
 
-          <v-layout v-if="!players" row wrap pa-0 ma-0>
+          <v-layout row wrap pa-0 ma-0>
             <v-flex  pa-0 ma-0 v-for="team  in teams" :key="team.id">
               <team-card  v-bind:team=team v-bind:league=getLeague></team-card>
             </v-flex>
@@ -29,8 +29,6 @@
 
       </div>
       <div v-else>
-       
-
           <v-container grid-list-md text-xs-center>
             <v-layout row wrap align-center justify-center fill-height>
               <v-flex v-for="ligue  in ligues.ligues" :key="ligue.idx">

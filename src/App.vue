@@ -25,7 +25,8 @@ export default {
 if(localStorage.getItem('useruid') != null)
 {
     let userObj = {uid: localStorage.getItem('useruid'),
-                        displayName: localStorage.getItem('userName')}
+                        displayName: localStorage.getItem('userName'),
+                        photoURL: localStorage.getItem('avatar')}
                         console.log(userObj)
          this.$store.dispatch('addUserCookies', userObj);
 }

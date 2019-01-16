@@ -20,6 +20,7 @@ export default new Vuex.Store({
       if (payload != null) {
         localStorage.setItem("useruid", payload.uid);
         localStorage.setItem("userName", payload.displayName);
+        localStorage.setItem("avatar", payload.photoURL);
       }
       router.push("/");
     },
@@ -73,6 +74,7 @@ export default new Vuex.Store({
         .then(function(result) {
           commit("setUser", result.user);
           commit("setIsAuthenticated", true);
+          console.log(result.user);
 
           router.push("/");
         })
@@ -120,7 +122,7 @@ export default new Vuex.Store({
         .push(payload);
     },
     addChat({ state }, sbody) {
-      let d = new Date()
+      let d = new Date();
       let postData = {
         name: state.user.displayName,
         body: sbody,

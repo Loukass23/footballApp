@@ -21,27 +21,43 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="primary lighten-1" app absolute clipped-left>
+      <v-layout ml-0 mr-2  align-center justify-center>
+        <v-layout ml-0 justify-start align-center>
+        <v-flex xs2 mx-0>
       <v-toolbar-side-icon @click.native="drawer = !drawer"></v-toolbar-side-icon>
+        </v-flex>
+      <v-flex xs8>
       <span class="title ml-3 mr-5">Football&nbsp;<span class="text">App</span></span>
-
+        </v-flex>
+        </v-layout>
       <v-spacer></v-spacer>
-      <v-layout row align-center v-if="isAuthenticated">
-
-        <h4>
-          {{this.getUser.displayName}}</h4>
+      
+      <v-layout mx-1 px-1 row justify-end align-center v-if="isAuthenticated">
+        <v-flex  xs2>
+<v-avatar v-if="getUser.photoURL" size="35">
+ <img v-bind:src=getUser.photoURL alt="avatar"> </v-avatar>
+        </v-flex>
+        <v-flex pl-1 xs6>
+        <v-card-title>
+          {{this.getUser.displayName}}</v-card-title>
+        </v-flex>
+        <v-flex xs1>
         <v-btn icon flat v-on:click="logout()">
           <v-icon>exit_to_app</v-icon>
         </v-btn>
+        </v-flex>
       </v-layout>
-      <div v-else>
+      
+      <v-layout row align-center v-else>
         <v-btn icon flat to="/join">
           <v-icon>add_circle</v-icon>
         </v-btn>
         <v-btn icon flat to="/sign-in">
           <v-icon>account_circle</v-icon>
         </v-btn>
-      </div>
-
+      </v-layout>
+      
+</v-layout>
     </v-toolbar>
   </span>
 </template>
