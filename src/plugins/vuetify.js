@@ -7,6 +7,6 @@ Vue.use(Vuetify, {
   iconfont: "md",
   theme: {
     primary: colors.indigo,
-    secondary: "#e9817d"
+    secondary: colors.teal
   }
 });

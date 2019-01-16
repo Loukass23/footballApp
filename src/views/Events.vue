@@ -1,33 +1,34 @@
 <template>
 
     <div>
-        
+
         <team-selector></team-selector>
          <v-layout row ml-2 >
-          <v-flex xs6 >
-        <v-switch
-      label="Next games"
-      v-model="nextEvents"
-      color="primary"
-    ></v-switch>
-          </v-flex>
-           <v-flex xs6 >
-     <v-switch
-      label="Passed games"
-      v-model="passedEvents"
-      color="primary"
-    ></v-switch>
-          </v-flex>
+
+               <v-switch color="primary" v-model="type" label="Next league events" value="nextleague"></v-switch>
+    <v-switch color="primary" v-model="type" label="Last league events" value="pastleague"></v-switch>
+     <v-switch color="primary" v-model="type" label="Next Team events" value="next"></v-switch>
+    <v-switch color="primary" v-model="type" label="Last Team events" value="last"></v-switch>
+
+
+
          </v-layout>
 <v-layout column xs12 align-content-center justify-center v-if="getLeague">
-   <v-card color="primary lighten-4">
-     <v-card-title class="font-weight-bold ">Passed games {{getLeague.leagueName}}</v-card-title>
-      <event v-if="passedEvents" :league='getLeague' :number=14 :next='false'></event>
-
-      <v-card-title class="font-weight-bold ">Next games {{getLeague.leagueName}}</v-card-title>
-      <event v-if="nextEvents" :league='getLeague' :number=14 :next='true'></event>
-      
+    
+         <v-card color="primary lighten-4">
+     <!-- <v-card-title class="font-weight-bold ">Passed games {{getLeague.leagueName}}</v-card-title> -->
+     <div v-if="type == 'nextleague' || type == 'pastleague' ">
+      <event :id='getLeague.leagueId' :number=14 :next="type"></event>
+     </div>
+     <div v-else-if="type == 'next' || type == 'last' ">
+      <event :id='selectedTeam.teamID' :number=4 :next="type"></event>
+     </div>
+     <div v-else>
+         Make a choice
+     </div>
       </v-card>
+    
+
     </v-layout>
     </div>
 </template>
@@ -39,8 +40,7 @@ import Event from '@/components/Event.vue';
         name:'Events',
         data() {
             return {
-                nextEvents: false,
-                passedEvents: false
+                type: null
             }
         },
         components: {TeamSelector,Event
@@ -50,8 +50,12 @@ import Event from '@/components/Event.vue';
 
         return this.$store.getters.getLeague;
       }
+    ,
+         selectedTeam() {
+        return this.$store.getters.selTeam;
+      }
         }
-        
+
     }
 </script>
 

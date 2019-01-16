@@ -7,17 +7,20 @@
             <div v-if="idx < number">
                 <v-flex xs12>
                     <v-card>
-                        <v-img v-if="item.strThumb" :src="item.strThumb" height="220px">
+                        <v-img v-if="item.strThumb" :src="item.strThumb" height="220">
                             <v-container fill-height fluid pa-2>
                                 <v-layout column fill-height>
                                     <v-flex xs12 align-self-center>
-                                        <span class=" primary headline white--text text-xs-center" v-text="item.strEvent"></span>
+                                        <span v-if="color == 'primary'" class=" primary headline white--text text-xs-center" v-text="item.strEvent"></span>
+                                        <span v-else class=" secondary headline white--text text-xs-center" v-text="item.strEvent"></span>
 
                                     </v-flex>
 
-                                    <v-flex xs12 align-self-center class="primary headline white--text text-xs-center"
+                                    <v-flex xs12 align-self-center class=" headline white--text text-xs-center"
                                         align-content-end v-if="next == 'pastleague'|| next =='last'">
-                                        <v-card-title>{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
+                                        <v-card-title v-if="color == 'primary'" class="primary">{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
+                                        <v-card-title v-else class="secondary">{{item.intHomeScore}} - {{item.intAwayScore}}</v-card-title>
+
                                     </v-flex>
                                     <v-flex xs12 align-self-center class="secondary  white--text text-xs-center"
                                         align-content-end v-else>
@@ -34,18 +37,33 @@
                                     <v-card-text class=" headline black--text text-xs-center" v-text="item.strEvent"></v-card-text>
 
                                     <v-flex xs12 align-self-center class="headline black--text text-xs-center"
-                                        align-content-end v-if="next == 'pastleague'">
+                                        align-content-end v-if="next == 'pastleague' || next=='last'">
+                                        <v-layout my-0 row wrap>
+                                            <v-flex xs12>
                                         <v-card-text class=" headline black--text text-xs-center">{{item.intHomeScore}}
                                             - {{item.intAwayScore}}</v-card-text>
+                                            </v-flex>
+                                            
+                                                <!-- <v-flex xs6>
+                                            <v-card-text style="font-size:small line-height: 2px" class=" black--text text-xs-center">{{item.strHomeGoalDetails}}
+                                           </v-card-text></v-flex>
+                                            <v-flex xs6>
+                                                <v-card-text class="  black--text text-xs-center">{{item.strAwayGoalDetails}}</v-card-text></v-flex>
+                                         -->
+                                        </v-layout>
                                     </v-flex>
-                                    <v-flex xs12 align-self-center class="black--text text-xs-center" align-content-end
+                                    <v-layout column xs10  class="black--text text-xs-center" align-center justify-center
                                         v-else>
+                                        <v-flex align-self-center>
                                         <v-card-title class=" headline black--text text-xs-center">Date:
-                                            {{item.strDate}} - {{item.strTime}}</v-card-title>
+                                            {{item.strDate}} at {{item.strTime}}</v-card-title>
+                                        </v-flex>
+                                        <v-flex>
                                         <v-btn :color="color" dark @click="dialog = true" large icon>
                                             <v-icon>map</v-icon>
                                         </v-btn>
-                                    </v-flex>
+                                        </v-flex>
+                                    </v-layout>
                                 </v-card>
                                 
                             </v-layout>
@@ -98,7 +116,7 @@
         created() {
             this.getEvents(this.id, this.next)
             if(this.next == 'nextleague'|| this.next =='pastleague') this.color = 'primary'
-            else this.color = 'teal'
+            else this.color = 'secondary'
             console.log(this.color)
 
         }

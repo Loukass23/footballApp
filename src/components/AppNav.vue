@@ -26,7 +26,7 @@
         <v-flex xs2 mx-0>
       <v-toolbar-side-icon @click.native="drawer = !drawer"></v-toolbar-side-icon>
         </v-flex>
-      <v-flex xs8>
+      <v-flex  @click="$router.push('/')" xs8>
       <span class="title ml-3 mr-5">Football&nbsp;<span class="text">App</span></span>
         </v-flex>
         </v-layout>

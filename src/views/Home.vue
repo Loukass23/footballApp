@@ -40,7 +40,7 @@
                     <v-card-text class="justify-center">Great choice! Now what would you wanna know about that?
                     </v-card-text>
                     <v-card-actions >
-                        <v-layout mx-auto  justify-center align-center >
+                        <v-layout mx-auto  justify-space-around align-center >
                             <v-flex class="justify-center" xs3 align-self-center>
                                 
                                    
@@ -56,8 +56,8 @@
                             </v-flex>
                             <v-flex  xs3 align-self-center>
                                 
-                                <v-btn color="primary" @click="$router.push('players')" outline>
-                                Players</v-btn>
+                                <v-btn color="primary" @click="$router.push('teams')" outline>
+                                Teams</v-btn>
                                 
                             </v-flex>
                         </v-layout>
@@ -78,8 +78,9 @@
                 <v-card elevation="6" height='300' color="primary">
                      <v-layout row justify-center align-center>
                          <v-flex xs2>
-                         <v-icon>date_range
-                         </v-icon>
+                              <v-avatar  size="35">
+                             <img v-bind:src=getLeague.leagueImg alt="avatar"> </v-avatar>
+                   
                     </v-flex>
                     <v-flex align-self-center xs6>
                         <v-card-title class="font-weight-bold black--text primary text-xs-center">Last game {{getLeague.leagueName}}</v-card-title>
@@ -99,8 +100,8 @@
                 <v-card elevation="6" height='300' color="teal">
                      <v-layout row justify-center align-center>
                          <v-flex xs2>
-                         <v-icon>date_range
-                         </v-icon>
+                         <v-avatar  size="35">
+                             <img v-bind:src=selectedTeam.badge alt="avatar"> </v-avatar>
                     </v-flex>
                     <v-flex align-self-center xs6>
                         <v-card-title class="font-weight-bold black--text teal text-xs-center">Last game {{selectedTeam.team}}</v-card-title>
@@ -137,8 +138,8 @@
                 <v-card elevation="6" height='300' color="primary">
                     <v-layout row justify-center align-center>
                          <v-flex xs2>
-                         <v-icon>date_range
-                         </v-icon>
+                         <v-avatar  size="35">
+                             <img v-bind:src=getLeague.leagueImg alt="avatar"> </v-avatar>
                          </v-flex>
                     <v-flex align-self-center xs6>
                     <v-card-title class="font-weight-bold black--text text-xs-center">Next game {{getLeague.leagueName}}</v-card-title>
@@ -153,6 +154,28 @@
 
                 </v-card>
             </v-layout>
+              <!-- next game team card -->
+            <v-layout my-3 column xs12 align-content-center justify-center v-if="selectedTeam">
+                <v-card elevation="6" height='300' color="teal">
+                     <v-layout row justify-center align-center>
+                         <v-flex xs2>
+                         <v-avatar  size="35">
+                             <img v-bind:src=selectedTeam.badge alt="avatar"> </v-avatar>
+                    </v-flex>
+                    <v-flex align-self-center xs6>
+                        <v-card-title class="font-weight-bold black--text teal text-xs-center">Next game {{selectedTeam.team}}</v-card-title>
+                       </v-flex>
+                    <v-flex xs2>
+                         <v-btn @click="$router.push('events')" small align-self-center flat>
+                        more 
+                    </v-btn>
+                    </v-flex>
+                    </v-layout>
+                    <event :id='selectedTeam.teamID' :number=1 :next="'next'"></event>
+
+                </v-card>
+            </v-layout>
+
 
             <!-- join chat card -->
 <v-layout  row my-2 align-content-center justify-center >
