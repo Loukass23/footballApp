@@ -1,9 +1,10 @@
 <template>
     <div>
-        <team-selector></team-selector>
+        
         
 
         <v-container justify-center align-content-center my-0 mx-auto pa-0>
+            <team-selector></team-selector>
             <v-parallax pt-0 my-0 dark height="200" src="https://res.cloudinary.com/ds3w3iwbk/image/upload/v1547570066/paralax3.png">
             <v-layout align-center column justify-center>
 
@@ -86,7 +87,7 @@
                         <v-card-title class="font-weight-bold black--text primary text-xs-center">Last game {{getLeague.leagueName}}</v-card-title>
                        </v-flex>
                     <v-flex xs2>
-                         <v-btn @click="$router.push('events')" small align-self-center flat>
+                         <v-btn @click="setType('pastleague')" small align-self-center flat>
                         more 
                     </v-btn>
                     </v-flex>
@@ -107,7 +108,7 @@
                         <v-card-title class="font-weight-bold black--text teal text-xs-center">Last game {{selectedTeam.team}}</v-card-title>
                        </v-flex>
                     <v-flex xs2>
-                         <v-btn @click="$router.push('events')" small align-self-center flat>
+                         <v-btn @click="setType('last')" small align-self-center flat>
                         more 
                     </v-btn>
                     </v-flex>
@@ -145,7 +146,7 @@
                     <v-card-title class="font-weight-bold black--text text-xs-center">Next game {{getLeague.leagueName}}</v-card-title>
                     </v-flex>
                     <v-flex xs2>
-                    <v-btn @click="$router.push('events')" small align-self-center flat>
+                    <v-btn @click="setType('nextleague')" small align-self-center flat>
                         more 
                     </v-btn>
                     </v-flex>
@@ -166,7 +167,7 @@
                         <v-card-title class="font-weight-bold black--text teal text-xs-center">Next game {{selectedTeam.team}}</v-card-title>
                        </v-flex>
                     <v-flex xs2>
-                         <v-btn @click="$router.push('events')" small align-self-center flat>
+                         <v-btn @click="setType('next')" small align-self-center flat>
                         more 
                     </v-btn>
                     </v-flex>
@@ -237,7 +238,14 @@
              selectedTeam() {
         return this.$store.getters.selTeam;
       }
-        }
+        },
+        methods: {
+            setType(type) {
+                localStorage.setItem("type", type);
+                this.$router.push('events')
+                
+            }
+        },
     };
 </script>
 

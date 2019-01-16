@@ -36,6 +36,8 @@
         <v-flex  xs2>
 <v-avatar v-if="getUser.photoURL" size="35">
  <img v-bind:src=getUser.photoURL alt="avatar"> </v-avatar>
+ <v-avatar v-else size="35">
+ <img src="https://res.cloudinary.com/ds3w3iwbk/image/upload/v1547653472/football_PNG52781.png" alt="avatar"> </v-avatar>
         </v-flex>
         <v-flex pl-1 xs6>
         <v-card-title>

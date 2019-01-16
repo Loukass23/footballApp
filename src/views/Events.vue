@@ -54,6 +54,9 @@ import Event from '@/components/Event.vue';
          selectedTeam() {
         return this.$store.getters.selTeam;
       }
+        },
+        created(){
+            if(localStorage.getItem('type') != null) this.type = localStorage.getItem('type')  
         }
 
     }
