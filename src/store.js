@@ -33,9 +33,29 @@ export default new Vuex.Store({
     },
     setLeague(state, payload) {
       state.leagueSelected = payload;
+      if (payload != null) {
+        localStorage.setItem("favLeagueName", payload.league);
+        localStorage.setItem("favLeagueBadge", payload.leagueImg);
+        localStorage.setItem("favLeagueID", payload.leagueId);
+        localStorage.setItem("favLeagueNamestr", payload.leagueName);
+      } else {
+        localStorage.removeItem("favLeagueName");
+        localStorage.removeItem("favLeagueBadge");
+        localStorage.removeItem("favLeagueID");
+        localStorage.removeItem("favLeagueNamestr");
+      }
     },
     setTeam(state, payload) {
       state.teamSelected = payload;
+      if (payload != null) {
+        localStorage.setItem("favTeamName", payload.team);
+        localStorage.setItem("favTeamBadge", payload.badge);
+        localStorage.setItem("favTeamID", payload.teamID);
+      } else {
+        localStorage.removeItem("favTeamName");
+        localStorage.removeItem("favTeamBadge");
+        localStorage.removeItem("favTeamID");
+      }
     },
     setPosts(state, payload) {
       state.posts = payload;
@@ -52,7 +72,6 @@ export default new Vuex.Store({
           alert("adress is alresady used");
           router.push("/sign-in");
         });
-
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           user
@@ -74,8 +93,6 @@ export default new Vuex.Store({
         .then(function(result) {
           commit("setUser", result.user);
           commit("setIsAuthenticated", true);
-          console.log(result.user);
-
           router.push("/");
         })
         .catch(() => {

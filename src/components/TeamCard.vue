@@ -6,7 +6,7 @@
             <v-card  class="mx-auto" 
               color="grey lighten-3" width="180" min-height="250">
             
-            <v-img @click="setTeams(team.strTeam, team.strTeamBadge)"   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
+            <v-img @click="setTeams(team.strTeam, team.strTeamBadge, team.idTeam)"   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
 
             <v-layout row align-center > 
             <v-flex xs6>
@@ -58,8 +58,8 @@
         this.$parent.getPlayers(team, badge);
         
     },
-    setTeams(team, badge){
-        this.$store.dispatch('addTeam', {team, badge})
+    setTeams(team, badge, teamID){
+        this.$store.dispatch('addTeam', {team, badge, teamID})
          this.$router.push('/');
     },
             addTeam(teamName) {

@@ -73,7 +73,7 @@
                 </v-card>
             </v-layout>
 
-            <!-- last game card -->
+            <!-- last game league card -->
             <v-layout my-3 column xs12 align-content-center justify-center v-if="getLeague">
                 <v-card elevation="6" height='300' color="primary">
                      <v-layout row justify-center align-center>
@@ -90,7 +90,28 @@
                     </v-btn>
                     </v-flex>
                     </v-layout>
-                    <event :league='getLeague' :number=1 :next='false'></event>
+                    <event :id='getLeague.leagueId' :number=1 :next="'pastleague'"></event>
+
+                </v-card>
+            </v-layout>
+                <!-- last game team card -->
+            <v-layout my-3 column xs12 align-content-center justify-center v-if="selectedTeam">
+                <v-card elevation="6" height='300' color="teal">
+                     <v-layout row justify-center align-center>
+                         <v-flex xs2>
+                         <v-icon>date_range
+                         </v-icon>
+                    </v-flex>
+                    <v-flex align-self-center xs6>
+                        <v-card-title class="font-weight-bold black--text teal text-xs-center">Last game {{selectedTeam.team}}</v-card-title>
+                       </v-flex>
+                    <v-flex xs2>
+                         <v-btn @click="$router.push('events')" small align-self-center flat>
+                        more 
+                    </v-btn>
+                    </v-flex>
+                    </v-layout>
+                    <event :id='selectedTeam.teamID' :number=1 :next="'last'"></event>
 
                 </v-card>
             </v-layout>
@@ -128,7 +149,7 @@
                     </v-btn>
                     </v-flex>
                     </v-layout>
-                    <event :league='getLeague' :number=1 :next='true'></event>
+                    <event :id='getLeague.leagueId' :number=1 :next="'nextleague'"></event>
 
                 </v-card>
             </v-layout>

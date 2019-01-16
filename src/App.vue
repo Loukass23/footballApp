@@ -27,8 +27,27 @@ if(localStorage.getItem('useruid') != null)
     let userObj = {uid: localStorage.getItem('useruid'),
                         displayName: localStorage.getItem('userName'),
                         photoURL: localStorage.getItem('avatar')}
-                        console.log(userObj)
          this.$store.dispatch('addUserCookies', userObj);
+}
+if(localStorage.getItem('favLeagueName') != null)
+{
+
+    let userObj = {league: localStorage.getItem('favLeagueName'),
+                        leagueId: localStorage.getItem('favLeagueID'),
+                        leagueName: localStorage.getItem('favLeagueNamestr'),
+                        leagueImg: localStorage.getItem('favLeagueBadge')}
+                        console.log(userObj)
+         this.$store.dispatch('addLeague', userObj);
+}
+if(localStorage.getItem('favTeamName') != null)
+{
+
+    let userObj = {team: localStorage.getItem('favTeamName'),
+                        badge: localStorage.getItem('favTeamBadge'),
+                         teamID: localStorage.getItem('favTeamID')
+                        }
+                        console.log(userObj)
+         this.$store.dispatch('addTeam', userObj);
 }
         
     }
