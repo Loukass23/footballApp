@@ -179,7 +179,7 @@ export default new Vuex.Store({
       return firebase
         .database()
         .ref("posts/")
-        .once("value", snapshot => {
+        .on("value", snapshot => {
           commit("setPosts", snapshot.val());
         });
     },

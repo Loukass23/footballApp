@@ -36,6 +36,9 @@
                         <v-icon>favorite</v-icon>
                     </v-btn>
                  </div>
+                 <v-btn  @click="dialog = true" icon>
+                        <v-icon>info</v-icon>
+                    </v-btn>
                
             </v-card-actions>
             </v-flex>
@@ -44,6 +47,44 @@
            
          </v-layout>
         </v-container>
+             <v-dialog v-model="dialog" >
+             <div class="text-xs-center">
+   
+
+      <v-card>
+        <v-card-title
+          class="headline primary lighten-2"
+          primary-title
+        >         
+                {{ team.strTeam }}
+             
+        </v-card-title>
+        <v-layout row align-center justify-center>
+         <v-flex xs12 tag="strong"  text-xs-center mr-3 mb-2>Formed in: {{ team.intFormedYear }}</v-flex>
+        <v-flex xs12  tag="strong"  text-xs-center mr-3 mb-2>Stadium: {{ team.strStadium }}</v-flex>
+    <v-flex xs12 tag="strong"  text-xs-center mr-3 mb-2>Location: {{ team.strStadiumLocation}}</v-flex>
+             
+        </v-layout>
+        <v-card-text>
+            {{ team.strDescriptionEN}}
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+           OK
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+           
+             </div>
+    </v-dialog>
     </div>
 </template>
 <script>
@@ -51,7 +92,8 @@
         name: "TeamCards",
         props: {
             team: null,
-            league: null
+            league: null,
+            dialog: false
         },
         methods: {
              getPlayers(team, badge){

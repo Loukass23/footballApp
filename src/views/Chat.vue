@@ -15,10 +15,10 @@
         <v-layout >
             
             <v-flex xs10 >
-        <v-text-field type="text" v-model="msg">Type your message</v-text-field>
+        <v-text-field v-on:keyup.enter="writeNewPost()" type="text" v-model="msg">Type your message</v-text-field>
             </v-flex>
             <v-flex xs2>
-        <v-btn fab v-on:click="writeNewPost()">Send</v-btn>
+        <v-btn fab  v-on:click="writeNewPost()">Send</v-btn>
             </v-flex>
             
         </v-layout>
@@ -83,7 +83,7 @@
 
                 this.$store.dispatch('addChat', this.msg)
                 this.$store.dispatch('getPosts');
-                console.log(this.getUser)
+                this.msg = '';
 
             },
             getPost() {

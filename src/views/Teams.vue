@@ -21,9 +21,7 @@
           </v-layout>
           <v-layout else row wrap pa-0 ma-0>
             link to feed/events/players
-            <!-- <v-flex  pa-0 ma-0 v-for="player  in players" :key="player.id">
-              <player-card  v-bind:player=player v-bind:league=getLeague></player-card>
-            </v-flex> -->
+          
           </v-layout>
         </v-container>
 
