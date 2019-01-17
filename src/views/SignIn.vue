@@ -56,7 +56,7 @@
           <v-flex xs12 sm8 md6 >
             <v-card >
               <v-toolbar dark color="primary">
-                  <v-icon>account_circle</v-icon>
+                  <v-icon>fa-google</v-icon>
                 <v-toolbar-title>Google account</v-toolbar-title>
               
               </v-toolbar>

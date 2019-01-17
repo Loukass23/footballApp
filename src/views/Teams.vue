@@ -20,8 +20,7 @@
             </v-flex>
           </v-layout>
           <v-layout else row wrap pa-0 ma-0>
-            link to feed/events/players
-          
+            
           </v-layout>
         </v-container>
 

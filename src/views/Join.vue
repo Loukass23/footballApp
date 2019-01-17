@@ -33,7 +33,7 @@
             <v-card >
               <v-toolbar dark color="primary">
                   <v-icon>mail</v-icon>
-                <v-toolbar-title>Create new account with email</v-toolbar-title>
+                <v-toolbar-title>Create account</v-toolbar-title>
               
               </v-toolbar>
               <v-card-text>

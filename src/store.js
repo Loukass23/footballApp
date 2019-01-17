@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
 import router from "@/router";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
     favTeam: [],
     leagueSelected: null,
     teamSelected: null,
-    posts: []
+    posts: [],
+    storeEvents:[]
   },
   mutations: {
     setUser(state, payload) {
@@ -59,9 +61,13 @@ export default new Vuex.Store({
     },
     setPosts(state, payload) {
       state.posts = payload;
+    },
+    setEvents(state, payload) {
+      state.storeEvents = payload;
     }
   },
   actions: {
+    //Authentification firebase
     userJoin({ commit }, { email, password, username }) {
       firebase
         .auth()
@@ -131,6 +137,7 @@ export default new Vuex.Store({
           commit("setIsAuthenticated", false);
         });
     },
+    //firebase database
     addFavTeam({ state }, payload) {
       firebase
         .database()
@@ -161,12 +168,6 @@ export default new Vuex.Store({
         .ref("posts")
         .update(updates);
     },
-    addLeague({ commit }, payload) {
-      commit("setLeague", payload);
-    },
-    addTeam({ commit }, payload) {
-      commit("setTeam", payload);
-    },
     getFavTeam({ state, commit }) {
       return firebase
         .database()
@@ -189,10 +190,29 @@ export default new Vuex.Store({
         .ref("users/" + state.user.uid + "/teams/" + key)
         .remove();
     },
+    //session favorites
+    addLeague({ commit }, payload) {
+      commit("setLeague", payload);
+    },
+    addTeam({ commit }, payload) {
+      commit("setTeam", payload);
+    },
     addUserCookies({ commit }, payload) {
       commit("setUser", payload);
       commit("setIsAuthenticated", true);
     }
+    // ,
+    // //axios fetch
+    // fetchEvents({ state, commit }) {
+    //   axios
+    //     .get(
+    //       "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=" +
+    //         state.leagueSelected.leagueId
+    //     )
+    //     .then(response => {
+    //       commit("setEvents", response.data.events);
+    //     });
+    // }
   },
   getters: {
     isAuthenticated(state) {
@@ -215,6 +235,9 @@ export default new Vuex.Store({
     },
     getPosts(state) {
       return state.posts;
+    },
+    getStoreEvents(state) {
+      return state.storeEvents;
     }
   }
 });

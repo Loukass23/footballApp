@@ -6,7 +6,7 @@
             <v-card  class="mx-auto" 
               color="grey lighten-3" width="180" min-height="250">
             
-            <v-img @click="setTeams(team.strTeam, team.strTeamBadge, team.idTeam)"   v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
+            <v-img @click="setTeams(team.strTeam, team.strTeamBadge, team.idTeam)" lazy-src="https://res.cloudinary.com/ds3w3iwbk/image/upload/v1547728412/ball-logo-png.png"  v-bind:src=team.strTeamBadge max-height="160" contain></v-img>
 
             <v-layout row align-center > 
             <v-flex xs6>
@@ -78,7 +78,7 @@
             flat
             @click="dialog = false"
           >
-           OK
+           CLOSE
           </v-btn>
         </v-card-actions>
       </v-card>
