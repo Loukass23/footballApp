@@ -3,13 +3,22 @@
     <div>
 
         <team-selector></team-selector>
-         <v-layout row ml-2 >
-
-               <v-switch color="primary" v-model="type" label="Next league events" value="nextleague"></v-switch>
-    <v-switch color="primary" v-model="type" label="Last league events" value="pastleague"></v-switch>
-     <v-switch color="primary" v-model="type" label="Next Team events" value="next"></v-switch>
-    <v-switch color="primary" v-model="type" label="Last Team events" value="last"></v-switch>
-
+         <v-layout row  >
+<v-flex justify-center align-center xs6>
+    <v-card color="primary lighten-2">
+    <v-card-title>League</v-card-title>
+               <v-switch color="secondary" v-model="type" label="Next events" value="nextleague"></v-switch>
+    <v-switch color="secondary" v-model="type" label="Last events" value="pastleague"></v-switch>
+    </v-card>
+</v-flex>
+<v-flex justify-center align-center xs6>
+    <v-card color="secondary lighten-2">
+    <v-card-title>Team</v-card-title>
+    
+     <v-switch color="primary" v-model="type" label="Next events" value="next"></v-switch>
+    <v-switch color="primary" v-model="type" label="Last events" value="last"></v-switch>
+    </v-card>
+</v-flex>
 
 
          </v-layout>

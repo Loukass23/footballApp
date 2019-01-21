@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
 import router from "@/router";
-import axios from "axios";
+//import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -14,7 +14,7 @@ export default new Vuex.Store({
     leagueSelected: null,
     teamSelected: null,
     posts: [],
-    storeEvents:[]
+    storeEvents: []
   },
   mutations: {
     setUser(state, payload) {

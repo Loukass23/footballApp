@@ -202,18 +202,14 @@
 </template>
 
 <script>
-    import OddCards from '@/components/OddCards.vue';
     import FTeam from '@/components/FTeam.vue';
-    import TeamCard from '@/components/TeamCard.vue';
     import TeamSelector from '@/components/TeamSelector.vue';
     import Event from '@/components/Event.vue';
 
     export default {
         name: 'Home',
         components: {
-            
             FTeam,
-            
             TeamSelector,
             Event
         },
