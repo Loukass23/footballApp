@@ -82,7 +82,9 @@ export default new Vuex.Store({
         if (user) {
           user
             .updateProfile({
-              displayName: username
+              displayName: username,
+              photoURL:
+                "https://res.cloudinary.com/ds3w3iwbk/image/upload/v1547653472/football_PNG52781.png"
             })
             .then(function() {
               commit("setUser", user);
